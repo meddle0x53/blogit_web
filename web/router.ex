@@ -16,6 +16,7 @@ defmodule BlogitWeb.Router do
   scope "/", BlogitWeb do
     pipe_through :browser # Use the default browser stack
 
+    get "/posts", PostController, :index
     get "/", PageController, :index
   end
 

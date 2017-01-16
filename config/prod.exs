@@ -59,3 +59,6 @@ config :logger, level: :info
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
 import_config "prod.secret.exs"
+
+config :blogit,
+  repository_url: "https://github.com/meddle0x53/elixir-blog.git", polling: false

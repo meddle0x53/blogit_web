@@ -5,3 +5,43 @@
     max-width: 1100px;
   }
 }
+
+.hideContent {
+  overflow: hidden;
+  line-height: 1em;
+  max-height: 35em;
+}
+
+.showContent {
+  line-height: 1em;
+  height: auto;
+}
+
+.readMore {
+  float: right;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.post-link a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav {
+  margin-top: 5px;
+}
+
+.nav > li > a {
+  padding: 6px 4px;
+}
+
+hr {
+  clear both;
+  margin-top: 2em;
+}

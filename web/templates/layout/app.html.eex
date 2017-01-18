@@ -31,7 +31,7 @@
             <%= render @view_module, @view_template, assigns %>
           </div>
            <div class="col-md-3">
-             Sidebar
+             <%= render @view_module, "sidebar_#{@view_template}", assigns %>
            </div>
         </div>
       </main>

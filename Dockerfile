@@ -1,4 +1,6 @@
-FROM ubuntu:14.04.3
+FROM ubuntu:14.04
+
+MAINTAINER meddle <n.tzvetinov@gmail.com
 
 # Set the locale, otherwise elixir will complain later on
 RUN locale-gen en_US.UTF-8
@@ -27,3 +29,5 @@ ENV MIX_ENV prod
 RUN mix compile
 
 CMD ["mix", "phoenix.server"]
+
+EXPOSE 4000

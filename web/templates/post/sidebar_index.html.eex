@@ -1,8 +1,0 @@
-<div class="well">
-  <ul class="nav">
-    <li class="nav-header title">Latest posts</li>
-    <%= for post <- @posts do %>
-      <li class="postLink"><a href="#"><%= post.title %></a></li>
-    <% end %>
-  </ul>
-</div>

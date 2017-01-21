@@ -20,5 +20,5 @@ import "phoenix_html"
 
 // import socket from "./socket"
 
-import { Posts } from "./posts"
-Posts.setup();
+//import { Posts } from "./posts"
+//Posts.setup();

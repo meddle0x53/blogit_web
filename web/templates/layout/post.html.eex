@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>BlogitWeb</title>
+    <title><%= BlogitWeb.PostView.title(assigns[:post]) %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
@@ -26,7 +26,14 @@
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
       <main role="main">
-        <%= render @view_module, @view_template, assigns %>
+        <div class="row">
+          <div class="col-lg-9">
+            <%= render @view_module, @view_template, assigns %>
+          </div>
+           <div class="col-md-3">
+             <%= render @view_module, "sidebar.html", assigns %>
+           </div>
+        </div>
       </main>
 
       <footer>

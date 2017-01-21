@@ -17,12 +17,6 @@
   height: auto;
 }
 
-.readMore {
-  float: right;
-  font-weight: bold;
-  font-size: 18px;
-}
-
 .title {
   font-weight: bold;
   font-size: 16px;
@@ -43,5 +37,42 @@
 
 hr {
   clear both;
-  margin-top: 2em;
+}
+
+body {
+  background: gainsboro;
+}
+
+.container {
+  padding-top: 20px;
+  border: 0px solid #e3e3e3;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+  background: white;
+}
+
+.postStream {
+  padding-left: 20px;
+  padding-right: 10px;
+/*  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.05); */
+}
+
+.post-row {
+  margin-bottom: 30px;
+}
+
+.post {
+  margin-bottom: 10px;
+}
+
+.post > h2 {
+  font-size: 32px;
+}
+
+.readMore {
+  text-align: right;
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 10px;
 }

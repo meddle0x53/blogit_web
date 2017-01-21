@@ -1,11 +1,5 @@
 <div class="postStream">
   <%= for post <- @posts do %>
-    <article class="post">
-      <%= raw post.html %>
-    </article>
-    <a class="readMore" href="<%= post_path @conn, :show %>">
-      Read more
-    </a>
-    <hr />
+    <%= render "_post.html", conn: @conn, post: post  %>
   <% end %>
 </div>

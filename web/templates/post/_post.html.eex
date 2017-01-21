@@ -1,0 +1,17 @@
+<div class="post-row">
+  <article class="post">
+    <h2>
+      <a href="<%= post_path(@conn, :show, @post.name) %>">
+        <%= @post.title %>
+      </a>
+    </h2>
+    <hr />
+    <%= raw @post.html %>
+  </article>
+  <div class="readMore" >
+    <a href="<%= post_path(@conn, :show, @post.name) %>">
+      Read More
+    </a>
+  </div>
+  <hr />
+</div>

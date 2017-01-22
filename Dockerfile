@@ -1,21 +1,11 @@
-FROM ubuntu:14.04
+FROM elixir:1.4
 
 MAINTAINER meddle <n.tzvetinov@gmail.com
 
-# Set the locale, otherwise elixir will complain later on
-RUN locale-gen en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
-
-RUN apt-get -y -q install wget
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -y -q install git
-
-# add erlang otp
-RUN wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
-RUN dpkg -i erlang-solutions_1.0_all.deb
-RUN apt-get update
-RUN apt-get install -y -q imagemagick esl-erlang elixir
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN apt-get install -y -q nodejs
 
 ADD . /app
 WORKDIR /app
@@ -24,9 +14,16 @@ RUN mix local.hex --force
 RUN mix local.rebar --force
 RUN mix deps.get --only-prod
 
+ENV NODE_ENV production
+ENV BRUNCH_ENV production
+RUN npm install
+RUN npm install -g brunch
+
 ENV PORT 4000
 ENV MIX_ENV prod
 RUN mix compile
+RUN brunch build
+RUN mix phoenix.digest
 
 CMD ["mix", "phoenix.server"]
 

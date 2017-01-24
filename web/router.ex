@@ -16,6 +16,8 @@ defmodule BlogitWeb.Router do
   scope "/", BlogitWeb do
     pipe_through :browser # Use the default browser stack
 
+    get "/imgs", ImagesController, :show
+
     get "/posts", PostController, :index
     get "/posts/:name", PostController, :show
     get "/", PageController, :index

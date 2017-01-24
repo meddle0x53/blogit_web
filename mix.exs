@@ -18,8 +18,8 @@ defmodule BlogitWeb.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {BlogitWeb, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :blogit]]
+     applications: [:blogit, :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
+                    :phoenix_ecto]]
   end
 
   # Specifies which paths to compile per environment.

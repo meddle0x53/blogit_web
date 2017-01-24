@@ -32,4 +32,5 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 config :blogit,
-  repository_url: "git@github.com:meddle0x53/elixir-blog.git", polling: false
+  repository_url: "git@github.com:meddle0x53/elixir-blog.git", polling: false,
+  assets_path: "assets"

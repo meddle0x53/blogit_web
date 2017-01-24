@@ -6,6 +6,22 @@
   }
 }
 
+.blog-logo {
+  padding-bottom: 10px;
+}
+
+.blog-title {
+  font-size: 42px;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.blog-sub {
+  display: flex;
+  font-size: 14px;
+  padding-left: 6px;
+}
+
 .post-title {
   font-weight: bold;
   font-size: 16px;

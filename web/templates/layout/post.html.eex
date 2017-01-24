@@ -14,12 +14,16 @@
   <body>
     <div class="container">
       <header class="header">
-        <nav role="navigation">
+        <!-- nav role="navigation">
           <ul class="nav nav-pills pull-right">
             <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
           </ul>
-        </nav>
-        <span class="logo"></span>
+        </nav-->
+        <img class="blog-logo" src="<%= static_path(@conn, blog_image_path(assigns[:blog].logo_path)) %>" />
+        <span class="blog-title">
+          <%= assigns[:blog].title %>
+          <span class="blog-sub"><%= assigns[:blog].sub_title %></span>
+        </span>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

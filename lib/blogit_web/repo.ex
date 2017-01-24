@@ -1,14 +1,10 @@
 defmodule BlogitWeb.Repo do
-  def all(Blogit.Post, limit \\ nil) do
-    all_posts(limit)
-  end
-
+  def all(Blogit.Post, limit \\ nil), do: all_posts(limit)
+  def all(Blogit.Configuration, _), do: [get(Blogit.Configuration, nil)]
   def all(_, _), do: []
 
-  def get(Blogit.Post, id) do
-    Blogit.post_by_name(String.to_atom(id))
-  end
-
+  def get(Blogit.Post, id), do: Blogit.post_by_name(String.to_atom(id))
+  def get(Blogit.Configuration, _), do: Blogit.configuration
   def get(module, id) do
     Enum.find all(module), fn entry -> entry.id == id end
   end

@@ -1,17 +1,21 @@
 <div class="post-row">
   <article class="post">
     <h2>
-      <a href="<%= post_path(@conn, :show, @post.name) %>">
-        <%= @post.title %>
+      <a class="post-title-link" href="<%= post_path(@conn, :show, @post.name) %>">
+        <%= @post.meta.title %>
       </a>
     </h2>
     <hr />
     <%= raw @post.html %>
+    <hr class="post-footer-divider" />
+    <div class="post-footer">
+      <div class="post-author">
+        <%= gettext("Posted by") %> <span class="post-author-name"><%= @post.meta.author %></span>
+        <%= gettext("on") %> <span class="post-author-created"><%= @post.meta.created_at %></span>
+      </div>
+      <%= render_category(@post)%>
+      <%= render_tags(@post)%>
+    </div>
+    <hr class="post-divider" />
   </article>
-  <div class="readMore" >
-    <a href="<%= post_path(@conn, :show, @post.name) %>">
-      Read More
-    </a>
-  </div>
-  <hr />
 </div>

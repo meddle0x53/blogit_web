@@ -11,7 +11,7 @@
 }
 
 .blog-title {
-  font-size: 42px;
+  font-size: 46px;
   padding-bottom: 10px;
   display: inline-block;
 }
@@ -19,6 +19,7 @@
 .blog-sub {
   display: flex;
   font-size: 14px;
+  font-style: italic;
   padding-left: 6px;
 }
 
@@ -61,37 +62,43 @@ body {
   background: white;
 }
 
-.postStream {
-  padding-left: 20px;
+.post-stream {
   padding-right: 10px;
-}
-
-.postStream .post {
-  overflow: hidden;
-  line-height: 1em;
-  max-height: 35em;
 }
 
 .post-row {
   margin-bottom: 30px;
 }
 
+.post-stream .post-row {
+  margin-bottom: 60px;
+}
+
 .post {
   margin-bottom: 10px;
 }
 
-.post > h2 {
-  font-size: 32px;
+.post > h2 > a.post-title-link {
+  font-size: 42px;
 }
 
-.readMore {
-  display: none;
-  text-align: right;
-  font-weight: bold;
-  font-size: 20px;
-  margin-right: 10px;
+.post-footer-divider {
+  margin-bottom: 4px;
 }
 
-.postStream .readMore {
-  display: block;
+.post-divider {
+  margin-top: 4px;
+}
+
+.post-author .post-author-name {
+  font-style: italic;
+}
+.post-author .post-author-created {
+  font-style: italic;
+}
+.post-category .post-category-name {
+  font-style: italic;
+}
+.post-tags .post-tag-names {
+  font-style: italic;
 }

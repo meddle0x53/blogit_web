@@ -1,4 +1,4 @@
-<div class="postStream">
+<div class="post-stream">
   <%= for post <- @posts do %>
     <%= render "_post.html", conn: @conn, post: post  %>
   <% end %>

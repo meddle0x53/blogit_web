@@ -15,6 +15,17 @@ defmodule BlogitWeb.Repo do
     end
   end
 
+  def all_by(module, params, deep \\ []) do
+    Enum.filter all(module), fn entry ->
+      Enum.all?(params, fn {key, val} ->
+        data = Enum.reduce(deep, entry, fn (current, acc) ->
+          Map.fetch!(acc, current)
+        end)
+        Map.get(data, key) == val
+      end)
+    end
+  end
+
   defp all_posts(nil), do: Blogit.list_posts
   defp all_posts(n) when is_integer(n), do: Blogit.list_posts |> Enum.take(n)
 end

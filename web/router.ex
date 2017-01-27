@@ -18,9 +18,8 @@ defmodule BlogitWeb.Router do
 
     get "/imgs", ImagesController, :show
 
-    get "/posts", PostController, :index
-    get "/posts/:name", PostController, :show
-    get "/", PageController, :index
+    get "/", PostController, :index
+    get "/:name", PostController, :show
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,43 @@
+## This file is a PO Template file.
+##
+## `msgid`s here are often extracted from source code.
+## Add new translations manually only if they're dynamic
+## translations that can't be statically extracted.
+##
+## Run `mix gettext.extract` to bring this file up to
+## date. Leave `msgstr`s empty as changing them here as no
+## effect: edit them in PO (`.po`) files instead.
+msgid ""
+msgstr ""
+
+#: web/templates/page/index.html.eex:2
+msgid "Welcome to %{name}"
+msgstr ""
+
+#: web/templates/post/_post.html.eex:13
+msgid "Posted by"
+msgstr ""
+
+#: web/templates/post/_post.html.eex:14
+msgid "on"
+msgstr ""
+
+#: web/views/post_view.ex:8
+msgid "Uncategorized"
+msgstr ""
+
+#: web/views/post_view.ex:13
+msgid "Categorized in "
+msgstr ""
+
+#: web/views/post_view.ex:19
+msgid "Tagged in"
+msgstr ""
+
+#: web/templates/post/sidebar.html.eex:4
+msgid "Latest posts"
+msgstr ""
+
+#: web/controllers/post_controller.ex:13
+msgid "uncategorized"
+msgstr ""

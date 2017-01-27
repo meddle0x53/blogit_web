@@ -19,7 +19,7 @@
             <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
           </ul>
         </nav-->
-        <img class="blog-logo" src="<%= static_path(@conn, blog_image_path(assigns[:blog].logo_path)) %>" />
+        <!-- img class="blog-logo" src="<%= static_path(@conn, blog_image_path(assigns[:blog].logo_path)) %>" / -->
         <span class="blog-title">
           <%= assigns[:blog].title %>
           <span class="blog-sub"><%= assigns[:blog].sub_title %></span>
@@ -39,14 +39,6 @@
            </div>
         </div>
       </main>
-
-      <footer>
-        <div class="row">
-          <div class="col-lg-12">
-            <p>Something from configuration</p>
-          </div>
-        </div>
-      </footer>
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>

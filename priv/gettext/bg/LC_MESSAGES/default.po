@@ -1,0 +1,43 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: bg\n"
+
+#: web/templates/page/index.html.eex:2
+msgid "Welcome to %{name}"
+msgstr "Добре дошли на %{name}"
+
+#: web/templates/post/_post.html.eex:13
+msgid "Posted by"
+msgstr "Публикувано от"
+
+#: web/templates/post/_post.html.eex:14
+msgid "on"
+msgstr "на"
+
+#: web/views/post_view.ex:8
+msgid "Uncategorized"
+msgstr "Некатегоризирано"
+
+#: web/views/post_view.ex:13
+msgid "Categorized in "
+msgstr "Категоризирано като "
+
+#: web/views/post_view.ex:19
+msgid "Tagged in"
+msgstr "Маркирано като"
+
+#: web/templates/post/sidebar.html.eex:4
+msgid "Latest posts"
+msgstr "Последни публикации"
+
+#: web/controllers/post_controller.ex:13
+msgid "uncategorized"
+msgstr "некатегоризирано"

@@ -1,18 +1,24 @@
 <div class="post-row">
   <article class="post">
-    <h2>
+    <h2 class="post-title-container">
       <a class="post-title-link" href="<%= post_path(@conn, :show, @post.name) %>">
         <%= @post.meta.title %>
       </a>
     </h2>
-    <hr />
+    <p class="post-author">
+    <%= gettext("by") %> <span class="post-author-name">
+      <%= link(@post.meta.author, to: post_path(@conn, :index, author: @post.meta.author)) %>
+    </span>
+    </p>
+    <hr class="before-post-date" />
+    <div class="post-date">
+      <%= gettext("Posted on") %> <span class="post-author-created"><%= @post.meta.created_at %></span>
+    </div>
+    <hr class="after-post-date" />
+    <%= post_image(@conn, @post) %>
     <%= raw @post.html %>
     <hr class="post-footer-divider" />
     <div class="post-footer">
-      <div class="post-author">
-        <%= gettext("Posted by") %> <span class="post-author-name"><%= @post.meta.author %></span>
-        <%= gettext("on") %> <span class="post-author-created"><%= @post.meta.created_at %></span>
-      </div>
       <%= render_category(@post)%>
       <%= render_tags(@post)%>
     </div>

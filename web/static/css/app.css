@@ -11,21 +11,22 @@
 }
 
 .blog-title {
-  font-size: 46px;
-  padding-bottom: 10px;
-  display: inline-block;
+  font-size: 52px;
 }
 
 .blog-sub {
-  display: flex;
-  font-size: 14px;
+  font-size: 16px;
   font-style: italic;
-  padding-left: 6px;
+  padding-left: 2px;
 }
 
 .post-title {
   font-weight: bold;
   font-size: 16px;
+}
+
+.post-title-container:first-child {
+  margin-top: 0px;
 }
 
 .nav > li.post-title > a {
@@ -90,12 +91,22 @@ body {
   margin-top: 4px;
 }
 
-.post-author .post-author-name {
-  font-style: italic;
+.post-author {
+  font-size: 22px;
 }
-.post-author .post-author-created {
-  font-style: italic;
+
+.post-date {
+  font-size: 16px;
 }
+
+.before-post-date {
+  margin-bottom: 10px;
+}
+
+.after-post-date {
+  margin-top: 10px;
+}
+
 .post-category .post-category-name {
   font-style: italic;
 }

@@ -14,14 +14,6 @@ msgstr ""
 msgid "Welcome to %{name}"
 msgstr "Добре дошли на %{name}"
 
-#: web/templates/post/_post.html.eex:13
-msgid "Posted by"
-msgstr "Публикувано от"
-
-#: web/templates/post/_post.html.eex:14
-msgid "on"
-msgstr "на"
-
 #: web/views/post_view.ex:8
 msgid "Uncategorized"
 msgstr "Некатегоризирано"
@@ -30,7 +22,7 @@ msgstr "Некатегоризирано"
 msgid "Categorized in "
 msgstr "Категоризирано като "
 
-#: web/views/post_view.ex:19
+#: web/views/post_view.ex:28
 msgid "Tagged in"
 msgstr "Маркирано като"
 
@@ -38,6 +30,15 @@ msgstr "Маркирано като"
 msgid "Latest posts"
 msgstr "Последни публикации"
 
-#: web/controllers/post_controller.ex:13
+#: web/controllers/post_controller.ex:14
 msgid "uncategorized"
 msgstr "некатегоризирано"
+
+#: web/templates/post/_post.html.eex:9
+msgid "by"
+msgstr "от"
+
+#, fuzzy
+#: web/templates/post/_post.html.eex:13
+msgid "Posted on"
+msgstr "Публикувано на"

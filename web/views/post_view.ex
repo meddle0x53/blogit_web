@@ -14,6 +14,15 @@ defmodule BlogitWeb.PostView do
     render_category_text(categorized <> category_span(category))
   end
 
+  def post_image(_, %{meta: %{title_image_path: nil}}), do: ""
+
+  def post_image(conn, %{meta: %{title_image_path: path}}) do
+    src = static_path(conn, BlogitWeb.LayoutView.blog_image_path(path))
+    img = "<img src=#{src} style='width: 100%;' />"
+
+    {:safe, img <> "<hr />"}
+  end
+
   def render_tags(%{meta: %{tags: []}}), do: ""
   def render_tags(%{meta: %{tags: tags}}) do
     description = gettext "Tagged in"

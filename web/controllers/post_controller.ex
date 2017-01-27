@@ -5,17 +5,22 @@ defmodule BlogitWeb.PostController do
   plug DefaultAssigns, blog: &__MODULE__.blog/0
   plug :last_posts
 
-  def index(conn, %{"category" => "uncategorized"}) do
-    index(conn, %{"category" => nil})
+  def index(conn, params = %{"category" => "uncategorized"}) do
+    index(conn, %{params | "category" => nil})
   end
 
-  def index(conn, %{"category" => category}) do
+  def index(conn, params = %{"category" => category}) do
     category = cond do
       gettext("uncategorized") == category -> nil
       true -> category
     end
 
-    render_posts(conn, Repo.all_by(Blogit.Post, %{category: category}, [:meta]))
+    filters = for {key, val} <- params, into: %{} do
+      {String.to_atom(key), val}
+    end
+    filters = %{filters | category: category}
+
+    render_posts(conn, Repo.all_by(Blogit.Post, filters, [:meta]))
   end
 
   def index(conn, _params) do

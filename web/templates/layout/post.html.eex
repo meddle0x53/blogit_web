@@ -9,6 +9,7 @@
 
     <title><%= BlogitWeb.PostView.title(assigns[:post]) %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <%= blog_image_styles(@conn, assigns) %>
   </head>
 
   <body>
@@ -20,10 +21,10 @@
           </ul>
         </nav-->
         <!-- img class="blog-logo" src="<%= static_path(@conn, blog_image_path(assigns[:blog].logo_path)) %>" / -->
-        <span class="blog-title">
+        <h1 class="blog-title">
           <%= assigns[:blog].title %>
-          <span class="blog-sub"><%= assigns[:blog].sub_title %></span>
-        </span>
+        </h1>
+        <p class="blog-sub"><%= assigns[:blog].sub_title %></p>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

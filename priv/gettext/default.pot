@@ -14,14 +14,6 @@ msgstr ""
 msgid "Welcome to %{name}"
 msgstr ""
 
-#: web/templates/post/_post.html.eex:13
-msgid "Posted by"
-msgstr ""
-
-#: web/templates/post/_post.html.eex:14
-msgid "on"
-msgstr ""
-
 #: web/views/post_view.ex:8
 msgid "Uncategorized"
 msgstr ""
@@ -30,7 +22,7 @@ msgstr ""
 msgid "Categorized in "
 msgstr ""
 
-#: web/views/post_view.ex:19
+#: web/views/post_view.ex:28
 msgid "Tagged in"
 msgstr ""
 
@@ -38,6 +30,14 @@ msgstr ""
 msgid "Latest posts"
 msgstr ""
 
-#: web/controllers/post_controller.ex:13
+#: web/controllers/post_controller.ex:14
 msgid "uncategorized"
+msgstr ""
+
+#: web/templates/post/_post.html.eex:9
+msgid "by"
+msgstr ""
+
+#: web/templates/post/_post.html.eex:13
+msgid "Posted on"
 msgstr ""

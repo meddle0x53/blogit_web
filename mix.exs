@@ -19,7 +19,8 @@ defmodule BlogitWeb.Mixfile do
   def application do
     [mod: {BlogitWeb, []},
      applications: [:blogit, :calendar, :phoenix, :phoenix_pubsub,
-      :phoenix_html, :cowboy, :logger, :gettext, :phoenix_ecto]]
+      :phoenix_html, :cowboy, :logger, :gettext, :phoenix_ecto],
+    included_applications: [:calendar_translations, :earmark, :git_cli]]
   end
 
   # Specifies which paths to compile per environment.
@@ -34,9 +35,9 @@ defmodule BlogitWeb.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:exrm, "~> 1.0.3"},
      {:calendar, "~> 0.16.1"},
      {:calendar_translations, "~> 0.0.4"},
+     {:distillery, "~> 1.1"},
      {:blogit, "~> 0.1.1"}]
   end
 

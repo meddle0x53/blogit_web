@@ -14,7 +14,10 @@ use Mix.Config
 config :blogit_web, BlogitWeb.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [host: "elixir-lang.bg", port: 80],
-  cache_static_manifest: "priv/static/manifest.json"
+  cache_static_manifest: "priv/static/manifest.json",
+  server: true,
+  root: ".",
+  version: Mix.Project.config[:version]
 
 # Do not print debug messages in production
 config :logger, level: :info

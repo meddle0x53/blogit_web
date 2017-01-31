@@ -26,6 +26,12 @@ defmodule BlogitWeb.Repo do
     end
   end
 
-  defp all_posts(nil), do: Blogit.list_posts
-  defp all_posts(n) when is_integer(n), do: Blogit.list_posts |> Enum.take(n)
+  defp all_posts(nil), do: Blogit.list_posts |> published
+  defp all_posts(n) when is_integer(n) do
+    Blogit.list_posts |> published |> Enum.take(n)
+  end
+
+  defp published(posts) do
+    posts |> Enum.filter(fn post -> post.meta.published end)
+  end
 end

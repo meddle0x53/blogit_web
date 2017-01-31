@@ -4,21 +4,23 @@ defmodule BlogitWeb.PostView do
   def title(%{meta: %{title: title}}), do: title
   def title(_), do: "Blogit"
 
-  def render_category(%{meta: %{category: category}}) when is_nil(category) do
-    uncategorized = gettext "Uncategorized"
-    render_category_text(category_span(uncategorized))
+  def render_category(
+    conn, %{meta: %{category: category}}
+  ) when is_nil(category) do
+    uncategorized = gettext "uncategorized"
+    render_category_text(category_span(conn, uncategorized))
   end
 
-  def render_category(%{meta: %{category: category}}) do
+  def render_category(conn, %{meta: %{category: category}}) do
     categorized = gettext "Categorized in "
-    render_category_text(categorized <> category_span(category))
+    render_category_text(categorized <> category_span(conn, category))
   end
 
   def post_image(_, %{meta: %{title_image_path: nil}}), do: ""
 
   def post_image(conn, %{meta: %{title_image_path: path}}) do
-    src = static_path(conn, BlogitWeb.LayoutView.blog_image_path(path))
-    img = "<img src=#{src} style='width: 100%;' />"
+    src = static_path(conn, BlogitWeb.LayoutView.blog_assets_path(path))
+    img = "<img src=#{src} style='width: 100%; max-height: 300px;' />"
 
     {:safe, img <> "<hr />"}
   end
@@ -32,11 +34,21 @@ defmodule BlogitWeb.PostView do
     {:safe, "<div class='post-tags'>#{description} #{tags_span}</div>" }
   end
 
-  defp category_span(category) do
-    "<span class=post-category-name>#{category}</span>"
+  defp category_span(conn, category) do
+    category_link = """
+      <a href="#{post_path(conn, :index, category: category)}">#{category}</a>
+    """
+    "<span class=post-category-name>#{category_link}</span>"
   end
 
   defp render_category_text(text) do
     {:safe, "<div class='post-category'>#{text}</div>"}
+  end
+
+  defp format_date(date) do
+    {:ok, parsed_date, nil} = Calendar.NaiveDateTime.Parse.iso8601(date)
+
+    locale = Gettext.get_locale(BlogitWeb.Gettext) |> String.to_atom
+    Calendar.Strftime.strftime!(parsed_date, "%A, %d %B %Y, %H:%M", locale)
   end
 end

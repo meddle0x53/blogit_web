@@ -18,6 +18,7 @@ config :logger, :console,
   metadata: [:request_id]
 
 config :blogit_web, BlogitWeb.Gettext, default_locale: "bg"
+config :calendar, :translation_module, CalendarTranslations.Translations
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

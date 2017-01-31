@@ -10,17 +10,12 @@
     <title><%= BlogitWeb.PostView.title(assigns[:post]) %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <%= blog_image_styles(@conn, assigns) %>
+    <%= blog_custom_styles(@conn, assigns) %>
   </head>
 
   <body>
     <div class="container">
       <header class="header">
-        <!-- nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav-->
-        <!-- img class="blog-logo" src="<%= static_path(@conn, blog_image_path(assigns[:blog].logo_path)) %>" / -->
         <h1 class="blog-title">
           <%= assigns[:blog].title %>
         </h1>

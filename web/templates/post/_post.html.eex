@@ -12,14 +12,14 @@
     </p>
     <hr class="before-post-date" />
     <div class="post-date">
-      <%= gettext("Posted on") %> <span class="post-author-created"><%= @post.meta.created_at %></span>
+      <%= gettext("Posted on") %> <span class="post-author-created"><%= format_date @post.meta.created_at %></span>
     </div>
     <hr class="after-post-date" />
     <%= post_image(@conn, @post) %>
     <%= raw @post.html %>
     <hr class="post-footer-divider" />
     <div class="post-footer">
-      <%= render_category(@post)%>
+      <%= render_category(@conn, @post)%>
       <%= render_tags(@post)%>
     </div>
     <hr class="post-divider" />

@@ -3,8 +3,8 @@ defmodule BlogitWeb.Mixfile do
 
   def project do
     [app: :blogit_web,
-     version: "0.0.1",
-     elixir: "~> 1.2",
+     version: "0.1.0",
+     elixir: "~> 1.3",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -18,8 +18,8 @@ defmodule BlogitWeb.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {BlogitWeb, []},
-     applications: [:blogit, :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto]]
+     applications: [:blogit, :calendar, :phoenix, :phoenix_pubsub,
+      :phoenix_html, :cowboy, :logger, :gettext, :phoenix_ecto]]
   end
 
   # Specifies which paths to compile per environment.
@@ -35,7 +35,9 @@ defmodule BlogitWeb.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:exrm, "~> 1.0.3"},
-     {:blogit, path: "./blogit"}]
+     {:calendar, "~> 0.16.1"},
+     {:calendar_translations, "~> 0.0.4"},
+     {:blogit, "~> 0.1.1"}]
   end
 
   defp aliases do

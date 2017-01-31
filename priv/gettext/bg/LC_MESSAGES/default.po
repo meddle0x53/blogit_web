@@ -41,4 +41,4 @@ msgstr "от"
 #, fuzzy
 #: web/templates/post/_post.html.eex:13
 msgid "Posted on"
-msgstr "Публикувано на"
+msgstr "Публикувано"

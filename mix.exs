@@ -37,7 +37,7 @@ defmodule BlogitWeb.Mixfile do
      {:calendar, "~> 0.16.1"},
      {:calendar_translations, "~> 0.0.4"},
      {:distillery, "~> 1.1"},
-     {:blogit, "~> 0.2.0"}]
+     {:blogit, "~> 0.3.0"}]
   end
 
   defp aliases do

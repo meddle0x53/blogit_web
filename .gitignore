@@ -25,4 +25,4 @@ erl_crash.dump
 
 elixir-blog
 blogit
-rel
+rel/blogit_web

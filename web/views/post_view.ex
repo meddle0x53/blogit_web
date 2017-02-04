@@ -46,9 +46,7 @@ defmodule BlogitWeb.PostView do
   end
 
   defp format_date(date) do
-    {:ok, parsed_date, nil} = Calendar.NaiveDateTime.Parse.iso8601(date)
-
     locale = Gettext.get_locale(BlogitWeb.Gettext) |> String.to_atom
-    Calendar.Strftime.strftime!(parsed_date, "%A, %d %B %Y, %H:%M", locale)
+    Calendar.Strftime.strftime!(date, "%A, %d %B %Y, %H:%M", locale)
   end
 end

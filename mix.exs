@@ -4,7 +4,7 @@ defmodule BlogitWeb.Mixfile do
   def project do
     [app: :blogit_web,
      version: "0.1.0",
-     elixir: "~> 1.3",
+     elixir: "~> 1.4",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -19,7 +19,7 @@ defmodule BlogitWeb.Mixfile do
   def application do
     [mod: {BlogitWeb, []},
      applications: [:blogit, :calendar, :phoenix, :phoenix_pubsub,
-      :phoenix_html, :cowboy, :logger, :gettext, :phoenix_ecto],
+      :phoenix_html, :cowboy, :logger, :gettext],
     included_applications: [:calendar_translations, :earmark, :git_cli]]
   end
 
@@ -30,7 +30,6 @@ defmodule BlogitWeb.Mixfile do
   defp deps do
     [{:phoenix, "~> 1.2.1"},
      {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.0"},
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
@@ -38,7 +37,7 @@ defmodule BlogitWeb.Mixfile do
      {:calendar, "~> 0.16.1"},
      {:calendar_translations, "~> 0.0.4"},
      {:distillery, "~> 1.1"},
-     {:blogit, "~> 0.1.1"}]
+     {:blogit, "~> 0.2.0"}]
   end
 
   defp aliases do

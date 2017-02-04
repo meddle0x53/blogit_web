@@ -16,23 +16,11 @@ defmodule BlogitWeb.Web do
   below.
   """
 
-  def model do
-    quote do
-      use Ecto.Schema
-
-      import Ecto
-      import Ecto.Changeset
-      import Ecto.Query
-    end
-  end
-
   def controller do
     quote do
       use Phoenix.Controller
 
       alias BlogitWeb.Repo
-      import Ecto
-      import Ecto.Query
 
       import BlogitWeb.Router.Helpers
       import BlogitWeb.Gettext
@@ -66,8 +54,6 @@ defmodule BlogitWeb.Web do
       use Phoenix.Channel
 
       alias BlogitWeb.Repo
-      import Ecto
-      import Ecto.Query
       import BlogitWeb.Gettext
     end
   end

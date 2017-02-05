@@ -14,8 +14,6 @@ RUN mix local.hex --force
 RUN mix local.rebar --force
 RUN mix deps.get --only-prod
 
-ENV NODE_ENV production
-ENV BRUNCH_ENV production
 RUN npm install
 
 RUN ./build_release.sh

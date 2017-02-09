@@ -6,6 +6,17 @@
   }
 }
 
+@media screen and (max-width: 1000px) {
+  .mobile-search {
+    display: block;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .mobile-search {
+    display: none;
+  }
+}
+
 .blog-logo {
   padding-bottom: 10px;
 }
@@ -112,4 +123,12 @@ body {
 }
 .post-tags .post-tag-names {
   font-style: italic;
+}
+
+.sidebar-form {
+  margin: 0;
+}
+
+.well {
+  padding: 15px;
 }

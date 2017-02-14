@@ -9,12 +9,8 @@ defmodule BlogitWeb.PostController do
     render_posts(conn, Repo.all(Blogit.Post))
   end
 
-  def index(conn, params = %{"category" => "uncategorized"}) do
-    index(conn, %{params | "category" => nil})
-  end
-
   def index(conn, params) do
-    render_posts(conn, BlogitWeb.Posts.filter_by_params(params))
+    render_posts(conn, BlogitWeb.Repo.all_by(Blogit.Post, params))
   end
 
   def show(conn, %{"name" => name}) do

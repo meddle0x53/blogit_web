@@ -1,4 +1,6 @@
 defmodule BlogitWeb.Repo do
+  require BlogitWeb.Gettext
+
   def all(Blogit.Post, limit \\ nil), do: all_posts(limit)
   def all(Blogit.Configuration, _), do: [get(Blogit.Configuration, nil)]
   def all(_, _), do: []
@@ -15,15 +17,13 @@ defmodule BlogitWeb.Repo do
     end
   end
 
-  def all_by(module, params, deep \\ []) do
-    Enum.filter all(module), fn entry ->
-      Enum.all?(params, fn {key, val} ->
-        data = Enum.reduce(deep, entry, fn (current, acc) ->
-          Map.fetch!(acc, current)
-        end)
-        Map.get(data, key) == val
-      end)
-    end
+  def all_by(Blogit.Post, params) do
+    params =
+      case BlogitWeb.Gettext.gettext("uncategorized") == params["category"] do
+        true -> %{params | "category" => nil}
+        false -> params
+      end
+    Blogit.filter_posts(params) |> published
   end
 
   defp all_posts(nil), do: Blogit.list_posts |> published

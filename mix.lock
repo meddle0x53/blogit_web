@@ -1,5 +1,5 @@
 %{"bbmustache": {:hex, :bbmustache, "1.0.4", "7ba94f971c5afd7b6617918a4bb74705e36cab36eb84b19b6a1b7ee06427aa38", [:rebar], []},
-  "blogit": {:hex, :blogit, "0.3.0", "0f012a5fb40615c398e66ce8c3f91546740bd4f9d89cff6553102db25f08316f", [:mix], [{:calendar, "~> 0.16.1", [hex: :calendar, optional: false]}, {:earmark, "~> 1.0.3", [hex: :earmark, optional: false]}, {:git_cli, "~> 0.2", [hex: :git_cli, optional: false]}, {:yaml_elixir, "~> 1.3.0", [hex: :yaml_elixir, optional: false]}]},
+  "blogit": {:hex, :blogit, "0.4.0", "67f9714d3bcb81003186752e365d9b45e9f87f624b0723b7705f2e402049035c", [:mix], [{:calendar, "~> 0.16.1", [hex: :calendar, optional: false]}, {:earmark, "~> 1.0.3", [hex: :earmark, optional: false]}, {:git_cli, "~> 0.2", [hex: :git_cli, optional: false]}, {:yaml_elixir, "~> 1.3.0", [hex: :yaml_elixir, optional: false]}]},
   "calendar": {:hex, :calendar, "0.16.1", "782327ad8bae7c797b887840dc4ddb933f05ce6e333e5b04964d7a5d5f79bde3", [:mix], [{:tzdata, "~> 0.5.8 or ~> 0.1.201603", [hex: :tzdata, optional: false]}]},
   "calendar_translations": {:hex, :calendar_translations, "0.0.4", "f2700fd2f7bb81b01fed3af19589cdbb8aacd3f8cf6d115a299024e98ee231c3", [:mix], [{:calendar, "~> 0.11", [hex: :calendar, optional: false]}]},
   "certifi": {:hex, :certifi, "0.7.0", "861a57f3808f7eb0c2d1802afeaae0fa5de813b0df0979153cbafcd853ababaf", [:rebar3], []},

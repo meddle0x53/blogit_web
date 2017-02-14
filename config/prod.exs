@@ -64,4 +64,6 @@ config :logger, level: :info
 import_config "prod.secret.exs"
 
 config :blogit,
-  repository_url: "https://github.com/meddle0x53/elixir-blog.git", polling: false
+  repository_url: "https://github.com/ElixirCourse/blog.git",
+  polling: true, poll_interval: 300_000, mode: :prod,
+  meta_divider: "--------", assets_path: "assets"

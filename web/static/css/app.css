@@ -132,3 +132,11 @@ body {
 .well {
   padding: 15px;
 }
+
+.not-found {
+  height: 400px;
+  background-image: url("/images/404.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}

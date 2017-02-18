@@ -7,35 +7,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>BlogitWeb</title>
+    <title>Blogit</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
     <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
-      </header>
-
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
-
-      <footer>
-        <div class="row">
-          <div class="col-lg-12">
-            <p>Something from configuration</p>
-          </div>
-        </div>
-      </footer>
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>

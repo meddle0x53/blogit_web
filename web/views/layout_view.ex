@@ -5,7 +5,7 @@ defmodule BlogitWeb.LayoutView do
     Application.get_env(:blogit, :assets_path, "assets")
   end
 
-  def blog_assets_path(image), do: "/custom/#{blog_assets_folder}/#{image}"
+  def blog_assets_path(image), do: "/custom/#{blog_assets_folder()}/#{image}"
 
   def blog_image_styles(_, %{blog: %{background_image_path: nil}}), do: ""
 

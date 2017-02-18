@@ -26,8 +26,9 @@ config :blogit_web, BlogitWeb.Endpoint,
     ]
   ]
 
-# Do not include metadata nor timestamps in development logs
-config :logger, :console, format: "[$level] $message\n"
+config :logger, format: "[$level] $message\n",
+  backends: [{LoggerFileBackend, :error_log}, :console]
+config :logger, :error_log, path: "log/error.log", level: :error
 
 config :phoenix, :stacktrace_depth, 20
 

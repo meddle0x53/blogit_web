@@ -26,3 +26,5 @@ erl_crash.dump
 elixir-blog
 blogit
 rel/blogit_web
+log
+blog

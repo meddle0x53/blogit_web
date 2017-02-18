@@ -20,7 +20,14 @@ config :blogit_web, BlogitWeb.Endpoint,
   version: Mix.Project.config[:version]
 
 # Do not print debug messages in production
-config :logger, level: :info
+config :logger, level: :info, format: "[$level] $message\n",
+  backends: [
+    { LoggerFileBackend, :error_log }, { LoggerFileBackend, :info_log },
+    :console
+  ]
+
+config :logger, :error_log, path: "log/error.log", level: :error
+config :logger, :info_log, path: "log/info.log", level: :info
 
 # ## SSL Support
 #

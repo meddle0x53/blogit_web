@@ -12,6 +12,15 @@ defmodule BlogitWeb.Endpoint do
     from: Blogit.GitRepository.local_path, gzip: false,
     only: [Application.get_env(:blogit, :assets_path, "assets")]
 
+  plug Plug.Static,
+    at: "/",
+    from: Blogit.GitRepository.local_path, gzip: false,
+    only: ~w(slides)
+
+  plug Plug.Static,
+    at: "zohoverify/", from: :blogit_web, gzip: false,
+    only: ~w(verifyforzoho.html)
+
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do

@@ -68,7 +68,7 @@ config :logger, :info_log, path: "log/info.log", level: :info
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
-import_config "prod.secret.exs"
+#import_config "prod.secret.exs"
 
 config :blogit,
   repository_url: "https://github.com/ElixirCourse/blog.git",

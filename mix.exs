@@ -20,7 +20,7 @@ defmodule BlogitWeb.Mixfile do
     [mod: {BlogitWeb, []},
      applications: [:blogit, :calendar, :phoenix, :phoenix_pubsub,
       :phoenix_html, :cowboy, :logger, :gettext],
-    included_applications: [:calendar_translations, :earmark, :git_cli]]
+    included_applications: [:calendar_translations, :earmark, :git_cli, :logger_file_backend]]
   end
 
   # Specifies which paths to compile per environment.

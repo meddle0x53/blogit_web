@@ -12,4 +12,9 @@
   <%= for post <- @posts do %>
     <%= render "_post.html", conn: @conn, post: post  %>
   <% end %>
+
+
+  <div id="pagination">
+    <%= link("next page", class: "next-posts", to: post_path(@conn, :index, Map.merge(@conn.params, %{"page" => (String.to_integer(Map.get(@conn.params, "page", "1")) + 1) }))) %>
+  </div>
 </div>

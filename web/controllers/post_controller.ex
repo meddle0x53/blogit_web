@@ -5,12 +5,16 @@ defmodule BlogitWeb.PostController do
   plug DefaultAssigns, blog: &__MODULE__.blog/0
   plug :last_posts
 
-  def index(conn, params) when map_size(params) == 0 do
-    render_posts(conn, Repo.all(Blogit.Post))
-  end
-
   def index(conn, params) do
-    render_posts(conn, BlogitWeb.Repo.all_by(Blogit.Post, params))
+    page = String.to_integer(params["page"] || "1")
+    per_page = String.to_integer(params["per_page"] || "2")
+    parameters = Map.drop(params, ~w(page per_page))
+
+    posts = case map_size(parameters) do
+      0 -> Repo.all(Blogit.Post, per_page, page)
+      _ -> Repo.all_by(Blogit.Post, per_page, page, parameters)
+    end
+    render_posts(conn, posts)
   end
 
   def show(conn, %{"name" => name}) do
@@ -34,6 +38,6 @@ defmodule BlogitWeb.PostController do
   end
 
   defp last_posts(conn, _params) do
-    assign(conn, :last_posts, Repo.all(Blogit.Post, 5))
+    assign(conn, :last_posts, Repo.all(Blogit.Post, 5, 1))
   end
 end

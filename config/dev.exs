@@ -33,5 +33,6 @@ config :logger, :error_log, path: "log/error.log", level: :error
 config :phoenix, :stacktrace_depth, 20
 
 config :blogit,
-  repository_url: "git@github.com:meddle0x53/elixir-blog.git", polling: false,
-  assets_path: "assets"
+  repository_url: "https://github.com/ElixirCourse/blog.git",
+  polling: true, poll_interval: 300_000, mode: :dev,
+  meta_divider: "--------", assets_path: "assets"

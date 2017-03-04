@@ -14,7 +14,7 @@ defmodule BlogitWeb.LayoutView do
     <style>
       header.header {
         background: url('#{static_path(conn, blog_assets_path(path))}');
-        background-position: center;
+        background-position: right 10px top;
         min-height: 300px;
         background-repeat: no-repeat;
       }

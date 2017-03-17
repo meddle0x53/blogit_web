@@ -1,5 +1,5 @@
 <div class="well">
-  <%= form_for @conn, post_path(@conn, :index), [class: "sidebar-form", role: "search", name: "search", method: :get], fn f -> %>
+  <%= form_for @conn, post_path(@conn, :index), [class: "sidebar-form", role: "search", as: "search", method: :get], fn f -> %>
     <div class="input-group">
       <%= text_input f, :q, [class: "form-control", placeholder: "Search"] %>
       <div class="input-group-btn">

@@ -23,6 +23,19 @@ defmodule BlogitWeb.LayoutView do
     {:safe, styles}
   end
 
+  def blog_logo(conn, %{blog: %{logo_path: nil}}), do: ""
+  def blog_logo(conn, %{blog: %{logo_path: path}}) do
+    src = static_path(conn, blog_assets_path(path))
+
+    html = """
+    <div class="blog-logo">
+      <img src="#{src}" />
+    </div>
+    """
+
+    {:safe, html}
+  end
+
   def blog_custom_styles(_, %{blog: %{styles_path: nil}}), do: ""
 
   def blog_custom_styles(conn, %{blog: %{styles_path: path}}) do

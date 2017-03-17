@@ -16,10 +16,13 @@
   <body>
     <div class="container">
       <header class="header">
-        <h1 class="blog-title">
-          <%= assigns[:blog].title %>
-        </h1>
-        <p class="blog-sub"><%= assigns[:blog].sub_title %></p>
+        <%= blog_logo(@conn, assigns) %>
+        <div class="titles">
+          <h1 class="blog-title">
+            <%= assigns[:blog].title %>
+          </h1>
+          <p class="blog-sub"><%= assigns[:blog].sub_title %></p>
+        </div>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

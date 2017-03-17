@@ -10,7 +10,7 @@ defmodule DefaultAssigns do
   end
 
   defp assign_value(conn, k, v) when is_function(v) do
-    Plug.Conn.assign(conn, k, v.())
+    assign(conn, k, v.())
   end
-  defp assign_value(conn, k, v), do: Plug.Conn.assign(conn, k, v)
+  defp assign_value(conn, k, v), do: assign(conn, k, v)
 end

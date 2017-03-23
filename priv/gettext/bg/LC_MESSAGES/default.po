@@ -42,3 +42,7 @@ msgstr "от"
 #: web/templates/post/_post.html.eex:13
 msgid "Posted on"
 msgstr "Публикувано"
+
+#: web/templates/post/sidebar.html.eex:13
+msgid "RSS - posts"
+msgstr "RSS - публикации"

@@ -10,6 +10,10 @@
 </div>
 
 <div class="well">
+  <%= link(gettext("RSS - posts"), to: feed_path(@conn, :index)) %>
+</div>
+
+<div class="well">
   <ul class="nav">
     <li class="nav-header post-title">
     <a href="<%= post_path(@conn, :index) %>"><%= gettext "Latest posts" %></a>

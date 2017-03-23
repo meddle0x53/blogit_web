@@ -24,6 +24,10 @@ defmodule BlogitWeb.Router do
     get "/posts/:name", PostController, :show
   end
 
+  scope "/feed", BlogitWeb do
+    get "/", FeedController, :index
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", BlogitWeb do
   #   pipe_through :api

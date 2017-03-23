@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<rss version="2.0">
+  <channel>
+    <title><%= assigns[:blog].title %></title>
+    <description><%= assigns[:blog].sub_title %></description>
+    <link><%= post_url(@conn, :index) %></link>
+    <%= for post <- @items do %>
+      <item>
+        <title>
+          <![CDATA[<%= post.meta.title %>]]>
+        </title>
+        <link><%= post_path(@conn, :show, post.name) %></link>
+        <description>
+          <![CDATA[<%= post.html %>]]>
+        </description>
+        <pubDate><%= date_format(post)  %></pubDate>
+        <guid isPermaLink="true"><%= post_path(@conn, :show, post.name) %></guid>
+      </item>
+    <% end %>
+  </channel>
+</rss>

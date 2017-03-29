@@ -3,7 +3,7 @@ defmodule BlogitWeb.Mixfile do
 
   def project do
     [app: :blogit_web,
-     version: "0.4.0",
+     version: "0.6.0",
      elixir: "~> 1.4",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -38,7 +38,7 @@ defmodule BlogitWeb.Mixfile do
      {:calendar_translations, "~> 0.0.4"},
      {:distillery, "~> 1.1"},
      {:logger_file_backend, "0.0.9"},
-     {:blogit, "~> 0.5.1"}]
+     {:blogit, "~> 0.7.0"}]
   end
 
   defp aliases do

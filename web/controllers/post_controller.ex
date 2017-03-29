@@ -4,6 +4,8 @@ defmodule BlogitWeb.PostController do
   plug :put_layout, "post.html"
   plug DefaultAssigns, blog: &__MODULE__.blog/0
   plug :last_posts
+  plug :pinned_posts
+  plug :posts_by_dates
 
   def index(conn, params) do
     page = String.to_integer(params["page"] || "1")
@@ -38,6 +40,14 @@ defmodule BlogitWeb.PostController do
   end
 
   defp last_posts(conn, _params) do
-    assign(conn, :last_posts, Repo.all(Blogit.Post, 5, 1))
+    assign(conn, :last_posts, Repo.all(Blogit.Post, 7, 1))
+  end
+
+  defp pinned_posts(conn, _params) do
+    assign(conn, :pinned_posts, Blogit.list_pinned())
+  end
+
+  defp posts_by_dates(conn, _params) do
+    assign(conn, :posts_by_dates, Blogit.posts_by_dates())
   end
 end

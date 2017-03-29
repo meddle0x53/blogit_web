@@ -14,23 +14,19 @@ msgstr ""
 msgid "Welcome to %{name}"
 msgstr "Добре дошли на %{name}"
 
-#: web/views/post_view.ex:8
-msgid "Uncategorized"
-msgstr "Некатегоризирано"
-
-#: web/views/post_view.ex:13
+#: web/views/post_view.ex:15
 msgid "Categorized in "
 msgstr "Категоризирано като "
 
-#: web/views/post_view.ex:28
+#: web/views/post_view.ex:30
 msgid "Tagged in"
 msgstr "Маркирано като"
 
-#: web/templates/post/sidebar.html.eex:4
+#: web/templates/post/sidebar.html.eex:34
 msgid "Latest posts"
 msgstr "Последни публикации"
 
-#: web/controllers/post_controller.ex:14
+#: lib/blogit_web/repo.ex:22 web/views/post_view.ex:10
 msgid "uncategorized"
 msgstr "некатегоризирано"
 
@@ -38,11 +34,18 @@ msgstr "некатегоризирано"
 msgid "by"
 msgstr "от"
 
-#, fuzzy
-#: web/templates/post/_post.html.eex:13
+#: web/templates/post/_post.html.eex:15
 msgid "Posted on"
 msgstr "Публикувано"
 
 #: web/templates/post/sidebar.html.eex:13
 msgid "RSS - posts"
 msgstr "RSS - публикации"
+
+#: web/templates/post/sidebar.html.eex:19
+msgid "Pinned posts"
+msgstr "Важни публикации"
+
+#: web/templates/post/sidebar.html.eex:49
+msgid "Archive"
+msgstr "Архив"

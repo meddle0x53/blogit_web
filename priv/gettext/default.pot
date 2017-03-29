@@ -22,7 +22,7 @@ msgstr ""
 msgid "Tagged in"
 msgstr ""
 
-#: web/templates/post/sidebar.html.eex:19
+#: web/templates/post/sidebar.html.eex:34
 msgid "Latest posts"
 msgstr ""
 
@@ -40,4 +40,12 @@ msgstr ""
 
 #: web/templates/post/sidebar.html.eex:13
 msgid "RSS - posts"
+msgstr ""
+
+#: web/templates/post/sidebar.html.eex:19
+msgid "Pinned posts"
+msgstr ""
+
+#: web/templates/post/sidebar.html.eex:49
+msgid "Archive"
 msgstr ""

@@ -2,6 +2,7 @@ defmodule BlogitWeb.Router do
   use BlogitWeb.Web, :router
 
   pipeline :browser do
+    plug Beaker.Integrations.Phoenix
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
@@ -27,6 +28,8 @@ defmodule BlogitWeb.Router do
   scope "/feed", BlogitWeb do
     get "/", FeedController, :index
   end
+
+  forward "/beaker", Beaker.Web
 
   # Other scopes may use custom stacks.
   # scope "/api", BlogitWeb do

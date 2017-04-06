@@ -19,7 +19,7 @@ defmodule BlogitWeb.Mixfile do
   def application do
     [mod: {BlogitWeb, []},
      applications: [:blogit, :calendar, :phoenix, :phoenix_pubsub,
-      :phoenix_html, :cowboy, :logger, :gettext],
+      :phoenix_html, :cowboy, :logger, :gettext, :beaker],
     included_applications: [:calendar_translations, :earmark, :git_cli, :logger_file_backend]]
   end
 
@@ -38,7 +38,8 @@ defmodule BlogitWeb.Mixfile do
      {:calendar_translations, "~> 0.0.4"},
      {:distillery, "~> 1.1"},
      {:logger_file_backend, "0.0.9"},
-     {:blogit, "~> 0.7.0"}]
+     {:beaker, ">= 1.2.0"},
+     {:blogit, "~> 0.7.3"}]
   end
 
   defp aliases do

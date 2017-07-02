@@ -9,12 +9,12 @@ defmodule BlogitWeb.Endpoint do
 
   plug Plug.Static,
     at: "custom/",
-    from: Blogit.GitRepository.local_path, gzip: false,
+    from: Blogit.RepositoryProviders.Git.local_path, gzip: false,
     only: [Application.get_env(:blogit, :assets_path, "assets")]
 
   plug Plug.Static,
     at: "/",
-    from: Blogit.GitRepository.local_path, gzip: false,
+    from: Blogit.RepositoryProviders.Git.local_path, gzip: false,
     only: ~w(slides)
 
   plug Plug.Static,

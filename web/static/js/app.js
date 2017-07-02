@@ -31,7 +31,6 @@ var Markit = {
 
     for (i = 0; i < vars.length; i++) {
       var current = vars[i].split('=');
-      console.log(current)
       if (current[0] === name) {
         return current[1];
       }
@@ -42,7 +41,6 @@ var Markit = {
       Markit.param("q") || Markit.param("search%5Bq%5D") ||
         Markit.param("search[q]")
     );
-    console.log(keyword);
 
     if(keyword) {
       $(".post-stream").mark(keyword);
@@ -61,8 +59,12 @@ $(document).ready(function () {
   ias.extension(new IASSpinnerExtension());
   ias.extension(new IASTriggerExtension({offset: 5}));
   ias.extension(new IASPagingExtension());
-  ias.on('pageChange', function(pageNum, scrollOffset, url) {
+  ias.on('rendered', function(items) {
     $('.post-stream').unmark();
     Markit.mark();
+
+    $('.post-stream .post pre').not('.hljs').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
   });
 });

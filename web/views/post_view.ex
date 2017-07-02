@@ -1,7 +1,8 @@
 defmodule BlogitWeb.PostView do
   use BlogitWeb.Web, :view
 
-  def title(%{meta: %{title: title}}), do: title
+  def title(%{post: %{meta: %{title: title}}}), do: title
+  def title(%{blog: %{title: title}}), do: title
   def title(_), do: "Blogit"
 
   def render_category(

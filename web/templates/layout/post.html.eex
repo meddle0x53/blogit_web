@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><%= BlogitWeb.PostView.title(assigns[:post]) %></title>
+    <title><%= BlogitWeb.PostView.title(assigns) %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="alternate" type="application/rss+xml" title="<%= assigns[:blog].title %>" href="<%= feed_url(@conn, :index) %>">
     <%= blog_image_styles(@conn, assigns) %>

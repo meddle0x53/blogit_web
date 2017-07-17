@@ -152,3 +152,30 @@ body {
   background-size: contain;
   background-position: center;
 }
+
+.navbar-toggle {
+  float: left;
+  margin-left: 15px;
+  background: white;
+}
+
+.navbar-toggle .icon-bar {
+  background-color: #563c76;
+}
+
+@media (min-width: 0) {
+  .navbar-toggle {
+    display: block; /* force showing the toggle */
+  }
+}
+
+body {
+  padding: 0;
+}
+
+.navbar {
+  top: 11px;
+  right: auto;
+  background: none;
+  border: none;
+}

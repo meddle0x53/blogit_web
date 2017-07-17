@@ -37,9 +37,11 @@ defmodule BlogitWeb.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import BlogitWeb.Router.Helpers
+      import BlogitWeb.Router.Helpers, only: [static_path: 2, static_url: 2]
       import BlogitWeb.ErrorHelpers
       import BlogitWeb.Gettext
+
+      use BlogitWeb.Helpers
     end
   end
 

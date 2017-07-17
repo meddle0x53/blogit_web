@@ -42,7 +42,7 @@ defmodule BlogitWeb.Mixfile do
      {:distillery, "~> 1.1"},
      {:logger_file_backend, "0.0.9"},
      {:beaker, ">= 1.2.0"},
-     {:blogit, "~> 1.0.1"}]
+     {:blogit, path: "../blogit"}]
   end
 
   defp aliases do

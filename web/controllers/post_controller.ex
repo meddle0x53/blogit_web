@@ -50,4 +50,18 @@ defmodule BlogitWeb.PostController do
   defp posts_by_dates(conn, _params) do
     assign(conn, :posts_by_dates, Blogit.posts_by_dates())
   end
+
+  defp set_locale(conn, _) do
+    lang = conn.params["lang"]
+
+    language =
+      if lang != nil && Enum.member?(Blogit.Settings.languages(), lang) do
+        lang
+      else
+        Blogit.Settings.default_language()
+      end
+
+    Gettext.put_locale(BlogitWeb.Gettext, language)
+    conn
+  end
 end

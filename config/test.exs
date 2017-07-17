@@ -8,12 +8,3 @@ config :blogit_web, BlogitWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
-
-# Configure your database
-config :blogit_web, BlogitWeb.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "blogit_web_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox

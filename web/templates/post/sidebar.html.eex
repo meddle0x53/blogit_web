@@ -13,20 +13,22 @@
   <%= link(gettext("RSS - posts"), to: feed_path(@conn, :index)) %>
 </div>
 
-<div class="well">
-  <ul class="nav">
-    <li class="nav-header post-title">
-    <a href="<%= post_path(@conn, :index) %>"><%= gettext "Pinned posts" %></a>
-    </li>
-    <%= for {name, title} <- @pinned_posts do %>
-      <li class="postLink">
-        <a href="<%= post_path(@conn, :show, name) %>">
-          <%= title %>
-        </a>
+<%= unless Enum.empty?(@pinned_posts) do %>
+  <div class="well">
+    <ul class="nav">
+      <li class="nav-header post-title">
+      <a href="<%= post_path(@conn, :index) %>"><%= gettext "Pinned posts" %></a>
       </li>
-    <% end %>
-  </ul>
-</div>
+      <%= for {name, title} <- @pinned_posts do %>
+        <li class="postLink">
+          <a href="<%= post_path(@conn, :show, name) %>">
+            <%= title %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <div class="well">
   <ul class="nav">

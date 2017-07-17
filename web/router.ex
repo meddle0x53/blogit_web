@@ -8,6 +8,8 @@ defmodule BlogitWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug BlogitWeb.Plugs.LocaleByReferer
+    plug BlogitWeb.Plugs.Locales
   end
 
   pipeline :api do
@@ -29,7 +31,16 @@ defmodule BlogitWeb.Router do
     get "/", FeedController, :index
   end
 
-  forward "/beaker", Beaker.Web
+  scope "/:locale", BlogitWeb do
+    pipe_through :browser
+
+    get "/imgs", ImagesController, :show
+
+    get "/", PageController, :index
+
+    get "/posts", PostController, :index
+    get "/posts/:name", PostController, :show
+  end
 
   # Other scopes may use custom stacks.
   # scope "/api", BlogitWeb do

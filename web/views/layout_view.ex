@@ -44,4 +44,27 @@ defmodule BlogitWeb.LayoutView do
 
     {:safe, styles}
   end
+
+  def current_locale do
+    Gettext.get_locale(BlogitWeb.Gettext)
+  end
+
+  def language_annotations(conn) do
+    Blogit.Settings.languages()
+    |> Enum.reject(fn l -> l == Gettext.get_locale(BlogitWeb.Gettext) end)
+    |> Enum.concat(["x-default"])
+    |> Enum.map(fn l ->
+      case l do
+        "x-default" -> {"x-default", localized_url(conn, "")}
+        l -> {l, localized_url(conn, "/#{l}")}
+      end
+    end)
+  end
+
+  defp localized_url(conn, alt) do
+    path = ~r/\/#{Gettext.get_locale(BlogitWeb.Gettext)}(\/(?:[^?]+)?|$)/
+           |> Regex.replace(conn.request_path, "#{alt}\\1")
+
+    Phoenix.Router.Helpers.url(BlogitWeb.Router, conn) <> path
+  end
 end

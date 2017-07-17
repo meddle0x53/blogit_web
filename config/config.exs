@@ -17,7 +17,7 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :blogit_web, BlogitWeb.Gettext, default_locale: "bg"
+config :blogit_web, BlogitWeb.Gettext, default_locale: "en"
 config :calendar, :translation_module, CalendarTranslations.Translations
 
 # Import environment specific config. This must remain at the bottom

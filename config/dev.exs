@@ -34,5 +34,6 @@ config :phoenix, :stacktrace_depth, 20
 
 config :blogit,
   repository_url: "git@github.com:ElixirCourse/blog-staging.git",
-  polling: true, poll_interval: 300_000, mode: :dev,
-  meta_divider: "--------", assets_path: "assets"
+  polling: true, poll_interval: 10_000,
+  meta_divider: "--------", assets_path: "assets",
+  languages: ~w(bg en)

@@ -8,7 +8,6 @@ defmodule BlogitWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug BlogitWeb.Plugs.LocaleByReferer
     plug BlogitWeb.Plugs.Locales
   end
 
@@ -27,10 +26,6 @@ defmodule BlogitWeb.Router do
     get "/posts/:name", PostController, :show
   end
 
-  scope "/feed", BlogitWeb do
-    get "/", FeedController, :index
-  end
-
   scope "/:locale", BlogitWeb do
     pipe_through :browser
 
@@ -42,8 +37,9 @@ defmodule BlogitWeb.Router do
     get "/posts/:name", PostController, :show
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", BlogitWeb do
-  #   pipe_through :api
-  # end
+
+  scope "/feed", BlogitWeb do
+    get "/", FeedController, :index
+  end
+
 end

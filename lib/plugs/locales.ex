@@ -1,9 +1,9 @@
 defmodule BlogitWeb.Plugs.Locales do
   import Plug.Conn
 
-  def init(assigns), do: assigns
+  def init(conf), do: conf
 
-  def call(conn, assigns) do
+  def call(conn, _) do
     locale = conn.params["locale"]
 
     language =

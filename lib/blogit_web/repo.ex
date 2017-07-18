@@ -1,23 +1,35 @@
 defmodule BlogitWeb.Repo do
   require BlogitWeb.Gettext
 
-  def all(Blogit.Post, per_page, page), do: all_posts(per_page, page)
-  def all(Blogit.Configuration, _), do: [get(Blogit.Configuration, nil)]
+  def all(Blogit.Post, per_page, page, locale) do
+    all_posts(per_page, page, locale)
+  end
+
+  def all(Blogit.Configuration, _, locale) do
+    [get(Blogit.Configuration, nil, locale)]
+  end
+
   def all(_, _), do: []
 
-  def get(Blogit.Post, id), do: Blogit.post_by_name(String.to_atom(id))
-  def get(Blogit.Configuration, _), do: Blogit.configuration
-  def get(module, id) do
-    Enum.find all(module, 1000, 1), fn entry -> entry.id == id end
+  def get(Blogit.Post, id, locale) do
+    Blogit.post_by_name(String.to_atom(id), language: locale)
   end
 
-  def get_by(module, params) do
-    Enum.find all(module, 1000, 1), fn entry ->
+  def get(Blogit.Configuration, _, locale) do
+    Blogit.configuration(language: locale)
+  end
+
+  def get(module, id, locale) do
+    Enum.find(all(module, 1000, 1, locale), fn entry -> entry.id == id end)
+  end
+
+  def get_by(module, params, locale) do
+    Enum.find(all(module, 1000, 1, locale), fn entry ->
       Enum.all?(params, fn {key, val} -> Map.get(entry, key) == val end)
-    end
+    end)
   end
 
-  def all_by(Blogit.Post, per_page, page, params) do
+  def all_by(Blogit.Post, per_page, page, params, locale) do
     params =
       case BlogitWeb.Gettext.gettext("uncategorized") == params["category"] do
         true -> %{params | "category" => nil}
@@ -27,11 +39,15 @@ defmodule BlogitWeb.Repo do
       true -> Map.merge(params, %{"q" => params["search"]["q"]})
       false -> params
     end
-    Blogit.filter_posts(params, from(page, per_page), per_page) |> published
+
+    from_post = from(page, per_page)
+    Blogit.filter_posts(params, from_post, per_page, language: locale)
+    |> published
   end
 
-  defp all_posts(per_page, page) do
-    Blogit.list_posts(from(page, per_page), per_page) |> published
+  defp all_posts(per_page, page, locale) do
+    Blogit.list_posts(from(page, per_page), per_page, language: locale)
+    |> published
   end
 
   defp published(posts) do

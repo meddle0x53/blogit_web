@@ -2,7 +2,7 @@ defmodule BlogitWeb.PostController do
   use BlogitWeb.Web, :controller
 
   plug :put_layout, "post.html"
-  plug DefaultAssigns, blog: &__MODULE__.blog/0
+  plug DefaultAssigns, blog: &__MODULE__.blog/1
   plug :last_posts
   plug :pinned_posts
   plug :posts_by_dates
@@ -11,19 +11,20 @@ defmodule BlogitWeb.PostController do
     page = String.to_integer(params["page"] || "1")
     per_page = String.to_integer(params["per_page"] || "2")
     parameters = Map.drop(params, ~w(page per_page))
+    locale = conn.assigns[:locale]
 
     posts = case map_size(parameters) do
-      0 -> Repo.all(Blogit.Post, per_page, page)
-      _ -> Repo.all_by(Blogit.Post, per_page, page, parameters)
+      0 -> Repo.all(Blogit.Post, per_page, page, locale)
+      _ -> Repo.all_by(Blogit.Post, per_page, page, parameters, locale)
     end
     render_posts(conn, posts)
   end
 
   def show(conn, %{"name" => name}) do
-    render_post(conn, Repo.get(Blogit.Post, name))
+    render_post(conn, Repo.get(Blogit.Post, name, conn.assigns[:locale]))
   end
 
-  def blog, do: Repo.get(Blogit.Configuration, nil)
+  def blog(conn), do: Repo.get(Blogit.Configuration, nil, conn.assigns[:locale])
 
   defp render_posts(conn, posts), do: render conn, "index.html", posts: posts
 
@@ -40,28 +41,17 @@ defmodule BlogitWeb.PostController do
   end
 
   defp last_posts(conn, _params) do
-    assign(conn, :last_posts, Repo.all(Blogit.Post, 7, 1))
+    last_posts = Repo.all(Blogit.Post, 10, 1, conn.assigns[:locale])
+    assign(conn, :last_posts, last_posts)
   end
 
   defp pinned_posts(conn, _params) do
-    assign(conn, :pinned_posts, Blogit.list_pinned())
+    locale = conn.assigns[:locale]
+    assign(conn, :pinned_posts, Blogit.list_pinned(language: locale))
   end
 
   defp posts_by_dates(conn, _params) do
-    assign(conn, :posts_by_dates, Blogit.posts_by_dates())
-  end
-
-  defp set_locale(conn, _) do
-    lang = conn.params["lang"]
-
-    language =
-      if lang != nil && Enum.member?(Blogit.Settings.languages(), lang) do
-        lang
-      else
-        Blogit.Settings.default_language()
-      end
-
-    Gettext.put_locale(BlogitWeb.Gettext, language)
-    conn
+    locale = conn.assigns[:locale]
+    assign(conn, :posts_by_dates, Blogit.posts_by_dates(language: locale))
   end
 end

@@ -4,6 +4,4 @@ defmodule BlogitWeb.Gettext do
   def supported_locales do
     Blogit.Settings.languages()
   end
-
-  defp config, do: Application.get_env(:blogit_web, __MODULE__)
 end

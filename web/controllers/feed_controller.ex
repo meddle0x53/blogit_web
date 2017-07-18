@@ -1,10 +1,10 @@
 defmodule BlogitWeb.FeedController do
   use BlogitWeb.Web, :controller
 
-  plug DefaultAssigns, blog: &__MODULE__.blog/0
+  plug DefaultAssigns, blog: &__MODULE__.blog/1
 
   def index(conn, _params) do
-    posts = Repo.all(Blogit.Post, 100, 1)
+    posts = Repo.all(Blogit.Post, 100, 1, conn.assigns[:locale])
 
     conn
     |> put_layout(:none)
@@ -12,5 +12,5 @@ defmodule BlogitWeb.FeedController do
     |> render("index.xml", items: posts)
   end
 
-  def blog, do: Repo.get(Blogit.Configuration, nil)
+  def blog(conn), do: Repo.get(Blogit.Configuration, nil, conn.assigns[:locale])
 end

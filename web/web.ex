@@ -22,8 +22,10 @@ defmodule BlogitWeb.Web do
 
       alias BlogitWeb.Repo
 
-      import BlogitWeb.Router.Helpers
+      import BlogitWeb.Router.Helpers, only: [static_path: 2, static_url: 2]
       import BlogitWeb.Gettext
+
+      use BlogitWeb.Helpers
     end
   end
 

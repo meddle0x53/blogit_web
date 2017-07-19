@@ -31,11 +31,19 @@ defmodule BlogitWeb.Helpers do
       args = create_args(__MODULE__, arity)
       quote do
         def unquote(fname)(unquote_splicing(args)) do
-          path = apply(BlogitWeb.Router.Helpers, unquote(fname), unquote(args))
-          if Gettext.get_locale(BlogitWeb.Gettext) != Blogit.Settings.default_language() do
-            "/#{Gettext.get_locale(BlogitWeb.Gettext)}#{path}"
+          link = apply(BlogitWeb.Router.Helpers, unquote(fname), unquote(args))
+          locale = Gettext.get_locale(BlogitWeb.Gettext)
+
+          if locale != Blogit.Settings.default_language() do
+            path_func = String.to_atom(
+              String.replace(unquote(to_string(fname)), "url", "path")
+            )
+            path = apply(BlogitWeb.Router.Helpers, path_func, unquote(args))
+            String.replace(
+              link, path, "/#{locale}#{path}"
+            )
           else
-            path
+            link
           end
         end
       end

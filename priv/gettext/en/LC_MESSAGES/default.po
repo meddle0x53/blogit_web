@@ -14,19 +14,19 @@ msgstr ""
 msgid "Welcome to %{name}"
 msgstr ""
 
-#: web/views/post_view.ex:15
+#: web/views/post_view.ex:16
 msgid "Categorized in "
 msgstr ""
 
-#: web/views/post_view.ex:30
+#: web/views/post_view.ex:31
 msgid "Tagged in"
 msgstr ""
 
-#: web/templates/post/sidebar.html.eex:34
+#: web/templates/post/sidebar.html.eex:36
 msgid "Latest posts"
 msgstr ""
 
-#: lib/blogit_web/repo.ex:22 web/views/post_view.ex:10
+#: lib/blogit_web/repo.ex:34 web/views/post_view.ex:11
 msgid "uncategorized"
 msgstr ""
 
@@ -42,10 +42,19 @@ msgstr ""
 msgid "RSS - posts"
 msgstr ""
 
-#: web/templates/post/sidebar.html.eex:19
+#: web/templates/post/index.html.eex:16 web/templates/post/sidebar.html.eex:20
 msgid "Pinned posts"
 msgstr ""
 
-#: web/templates/post/sidebar.html.eex:49
+#: web/templates/post/sidebar.html.eex:51
 msgid "Archive"
+msgstr ""
+
+msgid "en"
+msgstr "English"
+
+msgid "bg"
+msgstr "Български"
+
+msgid "Languages"
 msgstr ""

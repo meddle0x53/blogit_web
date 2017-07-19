@@ -61,10 +61,30 @@ defmodule BlogitWeb.LayoutView do
     end)
   end
 
-  defp localized_url(conn, alt) do
+  def localized_url(conn, alt) do
     path = ~r/\/#{Gettext.get_locale(BlogitWeb.Gettext)}(\/(?:[^?]+)?|$)/
            |> Regex.replace(conn.request_path, "#{alt}\\1")
 
     Phoenix.Router.Helpers.url(BlogitWeb.Router, conn) <> path
+  end
+
+  def language_links(conn) do
+    Blogit.Settings.languages()
+    |> Enum.map(fn lang ->
+      link =
+        if lang != Blogit.Settings.default_language() do
+          "/#{lang}" <> BlogitWeb.Router.Helpers.post_path(conn, :index)
+        else
+          BlogitWeb.Router.Helpers.post_path(conn, :index)
+        end
+
+      text = Gettext.gettext(BlogitWeb.Gettext, lang)
+      class = if lang == conn.assigns[:locale] do
+        "active"
+      else
+        "inactive"
+      end
+      {link, text, class}
+    end)
   end
 end

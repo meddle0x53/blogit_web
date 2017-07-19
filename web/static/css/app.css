@@ -153,19 +153,20 @@ body {
   background-position: center;
 }
 
-.navbar-toggle {
+.navbar-toggle, .navbar-toggle:hover, .navbar-toggle:active, .navbar-toggle:focus {
   float: left;
   margin-left: 15px;
-  background: white;
+  background: white !important;
+  display: none;
 }
 
 .navbar-toggle .icon-bar {
-  background-color: #563c76;
+  background-color: black;
 }
 
 @media (min-width: 0) {
   .navbar-toggle {
-    display: block; /* force showing the toggle */
+    display: none;
   }
 }
 
@@ -173,9 +174,40 @@ body {
   padding: 0;
 }
 
+.main-menu {
+  margin-bottom: 30px;
+}
+
+.main-menu .nav {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.main-menu hr {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.main-menu .nav-pills > li > a {
+  border-radius: 0;
+  padding: 8px 16px;
+}
+
 .navbar {
   top: 11px;
   right: auto;
   background: none;
   border: none;
+}
+
+.navmenu-fixed-left li {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.navmenu-fixed-left .nav-segment {
+  padding-left: 16px;
+  font-size: 16px;
+  color: #777;
+  margin-bottom: 4px;
 }

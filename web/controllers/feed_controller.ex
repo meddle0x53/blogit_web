@@ -5,7 +5,7 @@ defmodule BlogitWeb.FeedController do
   plug BlogitWeb.Plugs.Locales
 
   def index(conn, _params) do
-    posts = Repo.all(Blogit.Post, 100, 1, conn.assigns[:locale])
+    posts = Repo.all(Blogit.Models.Post.Meta, 100, 1, conn.assigns[:locale])
 
     conn
     |> put_layout(:none)
@@ -13,5 +13,7 @@ defmodule BlogitWeb.FeedController do
     |> render("index.xml", items: posts)
   end
 
-  def blog(conn), do: Repo.get(Blogit.Configuration, nil, conn.assigns[:locale])
+  def blog(conn) do
+    Repo.get(Blogit.Models.Configuration, conn.assigns[:locale])
+  end
 end

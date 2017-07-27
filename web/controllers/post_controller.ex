@@ -9,39 +9,42 @@ defmodule BlogitWeb.PostController do
 
   def index(conn, params) do
     page = String.to_integer(params["page"] || "1")
-    per_page = String.to_integer(params["per_page"] || "2")
-    parameters = Map.drop(params, ~w(page per_page))
+    per_page = String.to_integer(params["per_page"] || "4")
+    parameters = Map.drop(params, ~w(page per_page locale))
     locale = conn.assigns[:locale]
 
+    type = Blogit.Models.Post.Meta
     posts = case map_size(parameters) do
-      0 -> Repo.all(Blogit.Post, per_page, page, locale)
-      _ -> Repo.all_by(Blogit.Post, per_page, page, parameters, locale)
+      0 -> Repo.all(type, per_page, page, locale)
+      _ -> Repo.all_by(type, per_page, page, parameters, locale)
     end
     render_posts(conn, posts)
   end
 
   def show(conn, %{"name" => name}) do
-    render_post(conn, Repo.get(Blogit.Post, name, conn.assigns[:locale]))
+    render_post(conn, Repo.get(Blogit.Models.Post, name, conn.assigns[:locale]))
   end
 
-  def blog(conn), do: Repo.get(Blogit.Configuration, nil, conn.assigns[:locale])
+  def blog(conn) do
+    Repo.get(Blogit.Models.Configuration, conn.assigns[:locale])
+  end
 
   defp render_posts(conn, posts), do: render conn, "index.html", posts: posts
 
-  defp render_post(conn, :error) do
+  defp render_post(conn, {:error, _}) do
     conn
     |> put_status(:not_found)
     |> render("404.html")
   end
 
-  defp render_post(conn, post) do
+  defp render_post(conn, {:ok, post}) do
     render(
       conn, "show.html", post: post
     )
   end
 
   defp last_posts(conn, _params) do
-    last_posts = Repo.all(Blogit.Post, 10, 1, conn.assigns[:locale])
+    last_posts = Repo.all(Blogit.Models.Post.Meta, 8, 1, conn.assigns[:locale])
     assign(conn, :last_posts, last_posts)
   end
 

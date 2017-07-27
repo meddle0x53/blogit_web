@@ -17,28 +17,17 @@ defmodule BlogitWeb.ConnCase do
 
   using do
     quote do
-      # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
       alias BlogitWeb.Repo
-      import Ecto
-      import Ecto.Changeset
-      import Ecto.Query
 
       import BlogitWeb.Router.Helpers
 
-      # The default endpoint for testing
       @endpoint BlogitWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(BlogitWeb.Repo)
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(BlogitWeb.Repo, {:shared, self()})
-    end
-
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

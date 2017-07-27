@@ -37,17 +37,16 @@ defmodule BlogitWeb.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:calendar, "~> 0.16.1"},
+     {:calendar, "~> 0.17.3"},
      {:calendar_translations, "~> 0.0.4"},
      {:distillery, "~> 1.1"},
      {:logger_file_backend, "0.0.9"},
      {:beaker, ">= 1.2.0"},
+     {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
      {:blogit, path: "../blogit"}]
   end
 
   defp aliases do
-    ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-     "ecto.reset": ["ecto.drop", "ecto.setup"],
-     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
+    []
   end
 end

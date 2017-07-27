@@ -7,14 +7,14 @@
     <%= for post <- @items do %>
       <item>
         <title>
-          <![CDATA[<%= post.meta.title %>]]>
+          <![CDATA[<%= post.title %>]]>
         </title>
-        <link><%= post_path(@conn, :show, post.name) %></link>
+        <link><%= post_url(@conn, :show, post.name) %></link>
         <description>
-          <![CDATA[<%= post.html %>]]>
+          <![CDATA[<%= post.preview <> "<a href=#{post_url(@conn, :show, post.name)}>[...]</a>" %>]]>
         </description>
         <pubDate><%= date_format(post)  %></pubDate>
-        <guid isPermaLink="true"><%= post_path(@conn, :show, post.name) %></guid>
+        <guid isPermaLink="true"><%= post_url(@conn, :show, post.name) %></guid>
       </item>
     <% end %>
   </channel>

@@ -1,6 +1,12 @@
 defmodule BlogitWeb.LayoutView do
   use BlogitWeb.Web, :view
 
+  def has_social_links?(%{social: nil}), do: false
+  def has_social_links?(%{social: social}) do
+    social["rss"] || social["stars_for_blogit"] || social["facebook"] ||
+    social["github"] || social["twitter"]
+  end
+
   def blog_assets_folder do
     Application.get_env(:blogit, :assets_path, "assets")
   end

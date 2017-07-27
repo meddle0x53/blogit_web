@@ -6,15 +6,8 @@
   }
 }
 
-@media screen and (max-width: 1100px) {
-  .mobile-search {
-    display: block;
-  }
-}
-@media screen and (min-width: 1100px) {
-  .mobile-search {
-    display: none;
-  }
+.header {
+  border-bottom: 0px;
 }
 
 .blog-logo {
@@ -75,10 +68,6 @@ hr {
   clear both;
 }
 
-body {
-  background: gainsboro;
-}
-
 .container {
   padding-top: 20px;
   border: 0px solid #e3e3e3;
@@ -94,7 +83,7 @@ body {
   margin-bottom: 30px;
 }
 
-.post-stream .post-row {
+.post-stream-row {
   margin-bottom: 60px;
 }
 
@@ -104,6 +93,17 @@ body {
 
 .post > h2 > a.post-title-link {
   font-size: 42px;
+}
+
+.post-read-more {
+  height: 30px;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+
+.post-read-more-link {
+  font-size: 18px;
+  width: 100%;
 }
 
 .post-footer-divider {
@@ -153,25 +153,82 @@ body {
   background-position: center;
 }
 
-.navbar-toggle, .navbar-toggle:hover, .navbar-toggle:active, .navbar-toggle:focus {
-  float: left;
-  margin-left: 15px;
-  background: white !important;
+.m-nav {
   display: none;
 }
 
-.navbar-toggle .icon-bar {
-  background-color: black;
-}
-
-@media (min-width: 0) {
-  .navbar-toggle {
+@media (max-width: 1200px) {
+  .main-menu {
     display: none;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .post-stream {
+    padding-top: 40px;
+  }
+
+  .container {
+    padding-top: 44px;
+  }
+
+  .navbar-toggle, .navbar-toggle:hover, .navbar-toggle:active, .navbar-toggle:focus {
+    float: left;
+    background: white !important;
+    display: block;
+  }
+
+  .navbar-toggle .icon-bar {
+    background-color: black;
+  }
+
+  .m-nav {
+    display: block; /* force showing the toggle */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #f8f8f8;
+    z-index: 10000;
+  }
+
+  .m-nav .navbar {
+    height: auto;
+    min-height: auto;
+    margin: 0;
+    padding: 0;
+    top: 0;
+  }
+
+  .m-nav button {
+    margin: 6px;
+  }
+
+  .m-nav form {
+    margin: 6px;
+  }
+
+  .m-nav .btn {
+    margin: 0;
+  }
+
+  .m-nav .input-group {
+    max-width: 400px;
+    float: right;
+    width: calc(100% - 56px);
+  }
+
+  .navmenu {
+    width: calc(100% - 56px);
   }
 }
 
 body {
   padding: 0;
+  background: gainsboro;
 }
 
 .main-menu {
@@ -210,4 +267,26 @@ body {
   font-size: 16px;
   color: #777;
   margin-bottom: 4px;
+}
+
+.follow-link {
+  margin-top: 4px;
+}
+
+.github-follow-link {
+  margin-top: 8px;
+}
+
+.btn-rss {
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin-right: 6px;
+  margin-top: 6px;
+  background-image: url('/images/feedicon.png');
+  background-size: 20px;
+}
+
+.nav > li.rss-subscribe-link > a:hover, .nav > li.rss-subscribe-link > .a:focus, .nav > li.rss-subscribe-link > a:active {
+  background-color: inherit;
 }

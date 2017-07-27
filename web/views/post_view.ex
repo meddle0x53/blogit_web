@@ -5,6 +5,10 @@ defmodule BlogitWeb.PostView do
   def title(%{blog: %{title: title}}), do: title
   def title(_), do: "Blogit"
 
+  def render_category(conn, %{category: category}) do
+    render_category(conn, %{meta: %{category: category}})
+  end
+
   def render_category(
     conn, %{meta: %{category: category}}
   ) when is_nil(category) do
@@ -17,6 +21,10 @@ defmodule BlogitWeb.PostView do
     render_category_text(categorized <> category_span(conn, category))
   end
 
+  def post_image(conn, %{title_image_path: title_image_path}) do
+    post_image(conn, %{meta: %{title_image_path: title_image_path}})
+  end
+
   def post_image(_, %{meta: %{title_image_path: nil}}), do: ""
 
   def post_image(conn, %{meta: %{title_image_path: path}}) do
@@ -26,13 +34,14 @@ defmodule BlogitWeb.PostView do
     {:safe, img <> "<hr />"}
   end
 
+  def render_tags(%{tags: tags}), do: render_tags(%{meta: %{tags: tags}})
   def render_tags(%{meta: %{tags: []}}), do: ""
   def render_tags(%{meta: %{tags: tags}}) do
     description = gettext "Tagged in"
     tag_names = tags |> Enum.join(", ")
     tags_span = "<span class='post-tag-names'>#{tag_names}</span>"
 
-    {:safe, "<div class='post-tags'>#{description} #{tags_span}</div>" }
+    {:safe, "<div class='post-tags'>#{description} #{tags_span}</div>"}
   end
 
   defp category_span(conn, category) do
@@ -47,7 +56,7 @@ defmodule BlogitWeb.PostView do
   end
 
   defp format_date(date) do
-    locale = Gettext.get_locale(BlogitWeb.Gettext) |> String.to_atom
+    locale = BlogitWeb.Gettext |> Gettext.get_locale() |> String.to_atom
     Calendar.Strftime.strftime!(date, "%A, %d %B %Y, %H:%M", locale)
   end
 end

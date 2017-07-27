@@ -21,8 +21,6 @@ defmodule BlogitWeb.Endpoint do
     at: "zohoverify/", from: :blogit_web, gzip: false,
     only: ~w(verifyforzoho.html)
 
-  # Code reloading can be explicitly enabled under the
-  # :code_reloader configuration of your endpoint.
   if code_reloading? do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader

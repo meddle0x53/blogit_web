@@ -23,19 +23,89 @@
     <nav class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
       <a class="navmenu-brand" href="#"><%= BlogitWeb.PostView.title(assigns) %></a>
       <ul class="nav navmenu-nav">
-        <div class="nav-segment"><%= gettext "Languages" %></div>
-        <%= for {link, text, class} <- language_links(@conn) do %>
-          <li class="<%= class %>"><a href="<%= link %>"><%= text %></a></li>
+
+        <%= if Enum.count(Blogit.Settings.languages()) > 1 do %>
+          <div class="nav-segment"><%= gettext "Languages" %></div>
+          <%= for {link, text, class} <- language_links(@conn) do %>
+            <li class="<%= class %>"><a href="<%= link %>"><%= text %></a></li>
+          <% end %>
+        <% end %>
+
+        <%= unless Enum.empty?(@pinned_posts) do %>
+          <div class="nav-segment"><%= gettext "Pinned posts" %></div>
+
+          <%= for {name, title} <- @pinned_posts do %>
+            <li><a href="<%= post_path(@conn, :show, name) %>"><%= title %></a></li>
+          <% end %>
+        <% end %>
+
+        <%= unless Enum.empty?(@posts_by_dates) do %>
+          <div class="nav-segment"><%= gettext "Archive" %></div>
+
+          <%= for {year, month, count} <- @posts_by_dates do %>
+            <li>
+              <a href="<%= post_path(@conn, :index, month: month, year: year) %>">
+                <%= "#{{year, month, 1} |> Calendar.Strftime.strftime!("%B %Y", String.to_atom(@conn.assigns[:locale])) |> String.capitalize} (#{count})" %>
+              </a>
+            </li>
+          <% end %>
+        <% end %>
+
+        <%= if BlogitWeb.LayoutView.has_social_links?(assigns[:blog])  do %>
+          <div class="nav-segment"><%= gettext "Links" %></div>
+          <%= if assigns[:blog].social && assigns[:blog].social["rss"] do %>
+            <li class="rss-subscribe-link">
+              <span class="btn-rss"></span>
+              <%= link(gettext("RSS - posts"), to: feed_path(@conn, :index)) %>
+            </li>
+          <% end %>
+
+          <%= if assigns[:blog].social && assigns[:blog].social["twitter"] do %>
+            <li class="follow-link">
+              <a class="twitter-follow-button" data-show-screen-name="false" href="<%= "https://twitter.com/" <> assigns[:blog].social["twitter"] %>">Follow me on Twitter</a>
+            </li>
+          <% end %>
+          <%= if assigns[:blog].social && assigns[:blog].social["github"] do %>
+            <li class="follow-link">
+              <a class="github-button" href="<%= "https://github.com/" <> assigns[:blog].social["github"] %>" data-show-count="true" aria-label="Follow me on GitHub"><%= gettext "Follow me on Github" %></a>
+            </li>
+          <% end %>
+          <%= if assigns[:blog].social && assigns[:blog].social["stars_for_blogit"] do %>
+            <li class="follow-link">
+              <a class="github-button" href="https://github.com/meddle0x53/blogit" data-icon="octicon-star" data-show-count="true" aria-label="Star meddle0x53/blogit on GitHub"><%= gettext "Powered by Blogit" %></a>
+            </li>
+          <% end %>
+          <%= if assigns[:blog].social && assigns[:blog].social["stars_for_blogit"] do %>
+            <li class="follow-link">
+              <a class="github-button" href="https://github.com/meddle0x53/blogit_web" data-icon="octicon-star" data-show-count="true" aria-label="Star meddle0x53/blogit on GitHub"><%= gettext "Powered by Blogit Web" %></a>
+            </li>
+          <% end %>
+          <%= if assigns[:blog].social && assigns[:blog].social["facebook"] do %>
+            <li class="follow-link">
+              <div class="fb-follow" data-href="<%= "https://www.facebook.com/" <> assigns[:blog].social["facebook"] %>" data-layout="button_count" data-size="small" data-show-faces="false"></div>
+            </li>
+          <% end %>
         <% end %>
       </ul>
     </nav>
 
-    <div class="navbar navbar-default navbar-fixed-top">
-      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+    <div class="m-nav">
+      <div class="navbar navbar-default">
+        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <form role="search">
+          <div class="input-group">
+            <input class="form-control" placeholder="Search" name="q" type="text">
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
 
     <div class="container">
@@ -52,13 +122,15 @@
       </header>
 
       <div class="main-menu">
-        <hr/ >
-        <ul class="nav nav-pills">
-          <%= for {link, text, class} <- language_links(@conn) do %>
-            <li class="<%= class %>"><a href="<%= link %>"><%= text %></a></li>
-          <% end %>
-        </ul>
-        <hr/ >
+        <%= if Enum.count(Blogit.Settings.languages()) > 1 do %>
+          <hr/ >
+          <ul class="nav nav-pills">
+            <%= for {link, text, class} <- language_links(@conn) do %>
+              <li class="<%= class %>"><a href="<%= link %>"><%= text %></a></li>
+            <% end %>
+          </ul>
+          <hr/ >
+        <% end %>
       </div>
 
       <main role="main">
@@ -66,7 +138,7 @@
           <div class="col-lg-9">
             <%= render @view_module, @view_template, assigns %>
           </div>
-           <div class="col-md-3">
+           <div class="col-md-3 sidebar">
              <%= render @view_module, "sidebar.html", assigns %>
            </div>
         </div>
@@ -76,5 +148,47 @@
     <script>
       $(document).ready(function() { hljs.initHighlighting(); });
     </script>
+
+    <%= if assigns[:blog].social && assigns[:blog].social["github"] do %>
+      <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <% end %>
+
+    <%= if assigns[:blog].social && assigns[:blog].social["facebook"] do %>
+      <div id="fb-root"></div>
+      <script>
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) { return };
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.10";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      </script>
+    <% end %>
+
+    <%= if assigns[:blog].social && assigns[:blog].social["twitter"] do %>
+      <script>
+        window.twttr = (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0],
+              t = window.twttr || {};
+
+            if (d.getElementById(id)) {
+              return t;
+            }
+
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function(f) {
+              t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));
+      </script>
+    <% end %>
   </body>
 </html>

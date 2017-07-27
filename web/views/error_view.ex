@@ -3,7 +3,7 @@ defmodule BlogitWeb.ErrorView do
 
   def render("404.html", assigns) do
     render BlogitWeb.PostView, "404.html",
-      Map.merge(assigns, %{layout: { BlogitWeb.LayoutView, "app.html" }})
+      Map.merge(assigns, %{layout: {BlogitWeb.LayoutView, "app.html"}})
   end
 
   def render("500.html", _assigns) do

@@ -18,7 +18,8 @@ defmodule BlogitWeb.Helpers do
 
   defmacro __using__(_params) do
     funcs =
-      BlogitWeb.Router.Helpers.module_info(:functions)
+      :functions
+      |> BlogitWeb.Router.Helpers.module_info()
       |> Enum.filter(fn {fname, _} ->  fname != :static_path end)
       |> Enum.filter(fn {fname, _} ->  fname != :static_url end)
       |> Enum.filter(fn {fname, _} ->

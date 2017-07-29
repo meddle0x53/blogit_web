@@ -1,7 +1,7 @@
 defmodule BlogitWeb.FeedController do
   use BlogitWeb.Web, :controller
 
-  plug DefaultAssigns, blog: &__MODULE__.blog/1
+  plug BlogitWeb.Plugs.DefaultAssigns, blog: &__MODULE__.blog/1
   plug BlogitWeb.Plugs.Locales
 
   def index(conn, _params) do

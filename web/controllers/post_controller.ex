@@ -2,7 +2,7 @@ defmodule BlogitWeb.PostController do
   use BlogitWeb.Web, :controller
 
   plug :put_layout, "post.html"
-  plug DefaultAssigns, blog: &__MODULE__.blog/1
+  plug BlogitWeb.Plugs.DefaultAssigns, blog: &__MODULE__.blog/1
   plug :last_posts
   plug :pinned_posts
   plug :posts_by_dates

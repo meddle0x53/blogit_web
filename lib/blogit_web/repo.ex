@@ -33,7 +33,7 @@ defmodule BlogitWeb.Repo do
   """
   @spec all(Blogit.Models.Configuration, locale) :: [configuration]
   def all(Blogit.Models.Configuration, locale) do
-    [get(Blogit.Models.Configuration, nil, locale)]
+    [get(Blogit.Models.Configuration, locale)]
   end
 
   @doc """
@@ -54,7 +54,7 @@ defmodule BlogitWeb.Repo do
   """
   @spec get(Blogit.Models.Configuration, locale) :: configuration
   def get(Blogit.Models.Configuration, locale) do
-    Blogit.configuration(language: locale)
+    backend().configuration(language: locale)
   end
 
   @doc """
@@ -93,7 +93,7 @@ defmodule BlogitWeb.Repo do
                params
              end
 
-    Blogit.filter_posts(
+    backend().filter_posts(
       params, from: from(page, per_page), size: per_page, language: locale
     )
   end

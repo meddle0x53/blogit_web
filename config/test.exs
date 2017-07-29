@@ -8,6 +8,5 @@ config :blogit_web, BlogitWeb.Endpoint,
 config :logger, level: :warn
 
 config :blogit,
-       repository_url: "spec/data", polling: false,
-       repository_provider: Blogit.RepositoryProviders.Memory,
-       languages: ~w(en)
+       repository_url: "spec/data", polling: false, languages: ~w(en),
+       repository_provider: Blogit.RepositoryProviders.Memory

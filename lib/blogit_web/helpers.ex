@@ -1,4 +1,26 @@
 defmodule BlogitWeb.Helpers do
+  @moduledoc """
+  Contains a set of macros and functions helping with localization.
+
+  Contains a function for retrieving the currently set locale from
+  `Gettext` : `BlogitWeb.Helpers.current_locale/0`.
+
+  Can be included in the `BlogitWeb.Web.controller/0` and `BlogitWeb.Web.view/0`
+  function bodies using `use BlogitWeb.Helpers`, which will cause the path/url
+  helper functions called in views and controllers to respect the locale,
+  returned by `BlogitWeb.Helpers.current_locale/0`.
+
+  For example the call `post_path(conn, :index)` will return `"/posts"` if the
+  current locale is the default one, but if it is not the default and is for
+  example `bg`, the call will return `"/bg/posts"`. Same will be with
+  post_url -> `"protocol://domain:post/<locale>/posts"`.
+
+  With this all the links in the current page, if the current locale is for
+  example `bg`, will point to `bg` pages.
+
+  The static paths/urls are not affected.
+  """
+
   def current_locale do
     Gettext.get_locale(BlogitWeb.Gettext)
   end

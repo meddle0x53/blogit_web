@@ -31,4 +31,4 @@ config :logger, :info_log, path: "log/info.log", level: :info
 
 config :blogit,
   repository_url: "https://github.com/ElixirCourse/blog.git",
-  polling: true, poll_interval: 300_000, assets_path: "assets"
+  polling: true, poll_interval: 300, assets_path: "assets"

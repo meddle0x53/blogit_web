@@ -1,8 +1,6 @@
 defmodule BlogitWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :blogit_web
 
-  socket "/socket", BlogitWeb.UserSocket
-
   plug Plug.Static,
     at: "/", from: :blogit_web, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)

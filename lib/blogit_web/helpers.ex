@@ -21,23 +21,58 @@ defmodule BlogitWeb.Helpers do
   The static paths/urls are not affected.
   """
 
+  @doc """
+  Returns the current locale used by `Gettext`.
+
+  ## Examples
+
+      iex> Gettext.put_locale(BlogitWeb.Gettext, "es")
+      iex> BlogitWeb.Helpers.current_locale()
+      "es"
+  """
+  @spec current_locale() :: String.t
   def current_locale do
     Gettext.get_locale(BlogitWeb.Gettext)
   end
 
+  @doc """
+  Creates a localized path for a given `resource`.
+
+  If this macro is invoked like this:
+  ```
+  BlogitWeb.Helpers.localized_path(conn, "post", :index)
+  ```
+  and the `BlogitWeb.Helpers.current_locale/0` returns `"de"`, which is not
+  the default locale, the path returned will be `"/de/posts"`. If the
+  current locale is the default one, the path will be `"/posts"`.
+
+  This macro is invoked for all the `*_path` and `*_url` functions, using the
+  resource part of their names, of the module in which `use BlogitWeb.Helpers`
+  is called, except `static_path` and `static_url`.
+
+  If the using module contains a function called `post_path`,
+  the `localized_path` macro will be invoked like this
+  ```
+  BlogitWeb.Helpers.localized_path(conn, "post", :index)
+  ```
+  when it is called and its result will be used instead the original result.
+  """
   defmacro localized_path(conn, resource, endpoint) do
     quote do
       name = String.to_atom("#{unquote(resource)}_path")
-      path = apply(BlogitWeb.Router.Helpers, name, [unquote(conn), unquote(endpoint)])
+      arguments = [unquote(conn), unquote(endpoint)]
+      path = apply(BlogitWeb.Router.Helpers, name, arguments)
+      locale = BlogitWeb.Helpers.current_locale()
 
-      if current_locale() != Blogit.Settings.default_language() do
-        "/#{current_locale()}#{path}"
+      if locale != Blogit.Settings.default_language() do
+        "/#{locale}#{path}"
       else
         path
       end
     end
   end
 
+  @doc false
   defmacro __using__(_params) do
     funcs =
       :functions
@@ -55,7 +90,7 @@ defmodule BlogitWeb.Helpers do
       quote do
         def unquote(fname)(unquote_splicing(args)) do
           link = apply(BlogitWeb.Router.Helpers, unquote(fname), unquote(args))
-          locale = Gettext.get_locale(BlogitWeb.Gettext)
+          locale = BlogitWeb.Helpers.current_locale()
 
           if locale != Blogit.Settings.default_language() do
             path_func = String.to_atom(
@@ -72,6 +107,10 @@ defmodule BlogitWeb.Helpers do
       end
     end)
   end
+
+  ###########
+  # Private #
+  ###########
 
   defp create_args(_, 0), do: []
   defp create_args(fn_mdl, arg_cnt) do

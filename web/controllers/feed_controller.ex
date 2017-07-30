@@ -1,4 +1,10 @@
 defmodule BlogitWeb.FeedController do
+  @moduledoc """
+  A controller module which provides RSS feed for the main stream of posts.
+
+  Has only one action - `index` which returns the whole feed of post previews
+  formatted as RSS XML.
+  """
   use BlogitWeb.Web, :controller
 
   plug BlogitWeb.Plugs.DefaultAssigns, blog: &__MODULE__.blog/1

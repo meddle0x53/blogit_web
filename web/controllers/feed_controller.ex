@@ -10,8 +10,17 @@ defmodule BlogitWeb.FeedController do
   plug BlogitWeb.Plugs.DefaultAssigns, blog: &__MODULE__.blog/1
   plug BlogitWeb.Plugs.Locales
 
+  @doc """
+  The only action of the controller. The index action lists all the available
+  posts in the blog as RSS feed XML.
+
+  Uses the current locale, so for path like `/en/feed` it will return the
+  English posts feed and for `/bg/feed` the Bulgarian one. If the path is
+  just `/feed` it will return the posts feed for the default language of
+  `Blogit` (`Blogit.Settings.default_language()`).
+  """
   def index(conn, _params) do
-    posts = Repo.all(Blogit.Models.Post.Meta, 100, 1, conn.assigns[:locale])
+    posts = Repo.all(Blogit.Models.Post.Meta, 1000, 1, conn.assigns[:locale])
 
     conn
     |> put_layout(:none)

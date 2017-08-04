@@ -1,69 +1,6 @@
 defmodule BlogitWeb.RepoTest do
   use ExUnit.Case
 
-  defmodule DummyBlogit do
-    @meta %{
-      "en" => [
-        %Blogit.Models.Post.Meta{
-          name: "post1", author: "meddle", category: "Test"
-        },
-        %Blogit.Models.Post.Meta{
-          name: "post2", author: "slavi"
-        },
-        %Blogit.Models.Post.Meta{
-          name: "post3", author: "valo"
-        },
-        %Blogit.Models.Post.Meta{
-          name: "post4", author: "andi"
-        }
-      ],
-      "bg" => [
-        %Blogit.Models.Post.Meta{
-          name: "публикация1", category: "Test"
-        },
-        %Blogit.Models.Post.Meta{
-          name: "публикация2"
-        }
-      ]
-    }
-
-    @configuration %{
-      "en" => %Blogit.Models.Configuration{
-        title: "My blog"
-      },
-      "bg" => %Blogit.Models.Configuration{
-        title: "Моят блог"
-      },
-    }
-
-    def list_posts(options \\ []) do
-      from = Keyword.get(options, :from, 0)
-      size = Keyword.get(options, :size, 5)
-      language = Keyword.get(options, :language, "en")
-
-      (@meta[language] || []) |> Enum.drop(from)|> Enum.take(size)
-    end
-
-    def configuration(options \\ []) do
-      @configuration[Keyword.get(options, :language, "en")]
-    end
-
-    def post_by_name(name, options \\ []) do
-      language = Keyword.get(options, :language, "en")
-      post = (@meta[language] || []) |> Enum.find(&(&1.name == to_string(name)))
-
-      if is_nil(post), do: :error, else: post
-    end
-
-    def filter_posts(params, options \\ []) do
-      options |> list_posts() |> Enum.filter(fn post ->
-        Enum.all?(params, fn {key, val} ->
-          Map.fetch!(post, String.to_atom(key)) == val
-        end)
-      end)
-    end
-  end
-
   setup_all do
     Application.put_env(:blogit_web, :backend_implementation, DummyBlogit)
     :ok

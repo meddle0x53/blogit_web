@@ -7,8 +7,8 @@ defmodule BlogitWeb.FeedController do
   """
   use BlogitWeb.Web, :controller
 
-  plug BlogitWeb.Plugs.DefaultAssigns, blog: &__MODULE__.blog/1
   plug BlogitWeb.Plugs.Locales
+  plug BlogitWeb.Plugs.DefaultAssigns, blog: &__MODULE__.blog/1
 
   @doc """
   The only action of the controller. The index action lists all the available
@@ -28,6 +28,10 @@ defmodule BlogitWeb.FeedController do
     |> render("index.xml", items: posts)
   end
 
+  @doc """
+  Retrieves the configuration of the blog using the locale assigned to the
+  connection.
+  """
   def blog(conn) do
     Repo.get(Blogit.Models.Configuration, conn.assigns[:locale])
   end

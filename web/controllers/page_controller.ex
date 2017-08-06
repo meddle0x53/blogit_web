@@ -8,6 +8,9 @@ defmodule BlogitWeb.PageController do
   """
   use BlogitWeb.Web, :controller
 
+  @doc """
+  The only action of the controller. It redirects to `post_path(conn, :index)`.
+  """
   def index(conn, _params) do
     redirect(conn, to: post_path(conn, :index))
   end

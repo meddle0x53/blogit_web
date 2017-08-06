@@ -21,6 +21,13 @@ defmodule BlogitWeb.FeedController do
   """
   def index(conn, _params) do
     posts = Repo.all(Blogit.Models.Post.Meta, 1000, 1, conn.assigns[:locale])
+    posts_url = post_url(conn, :index)
+    posts_path = post_path(conn, :index)
+
+    posts = posts |> Enum.map(fn post ->
+      preview = post.preview |> String.replace(posts_path, posts_url)
+      Map.put(post, :preview, preview)
+    end)
 
     conn
     |> put_layout(:none)

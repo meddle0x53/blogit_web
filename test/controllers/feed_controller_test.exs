@@ -14,6 +14,9 @@ defmodule BlogitWeb.FeedControllerTest do
     item_link3 = "http://localhost:4001/posts/post3"
     item_link4 = "http://localhost:4001/posts/post4"
 
+    item_cdata3 = ~s(<h1>Third Bost</h1><a href="#{item_link1}">A link</a>) <>
+      "<a href=#{item_link3}>[...]</a>"
+
     rss = """
     <?xml version="1.0" encoding="UTF-8"?>
     <rss version="2.0">
@@ -23,7 +26,7 @@ defmodule BlogitWeb.FeedControllerTest do
         <link>http://localhost:4001/posts</link>
           <item>
             <title>
-              <![CDATA[]]>
+              <![CDATA[Post One]]>
             </title>
             <link>#{item_link1}</link>
             <description>
@@ -34,7 +37,7 @@ defmodule BlogitWeb.FeedControllerTest do
           </item>
           <item>
             <title>
-              <![CDATA[]]>
+              <![CDATA[Post Two]]>
             </title>
             <link>#{item_link2}</link>
             <description>
@@ -45,18 +48,18 @@ defmodule BlogitWeb.FeedControllerTest do
           </item>
           <item>
             <title>
-              <![CDATA[]]>
+              <![CDATA[Post Three]]>
             </title>
             <link>#{item_link3}</link>
             <description>
-              <![CDATA[<h1>Third Bost</h1><a href=#{item_link3}>[...]</a>]]>
+              <![CDATA[#{item_cdata3}]]>
             </description>
             <pubDate>Wed, 26 Apr 2017 16:26:26 +0000</pubDate>
             <guid isPermaLink="true">#{item_link3}</guid>
           </item>
           <item>
             <title>
-              <![CDATA[]]>
+              <![CDATA[Post Four]]>
             </title>
             <link>#{item_link4}</link>
             <description>
@@ -98,6 +101,10 @@ defmodule BlogitWeb.FeedControllerTest do
     title1 = "Първа Бубликация"
     title2 = "Втора Бубликация"
 
+    item_cdata2 = "<h1>#{title2}</h1>" <>
+      ~s(<a href="http://localhost:4001/bg/posts/so">A link</a>) <>
+      "<a href=#{item_link2}>[...]</a>"
+
     rss = """
     <?xml version="1.0" encoding="UTF-8"?>
     <rss version="2.0">
@@ -122,7 +129,7 @@ defmodule BlogitWeb.FeedControllerTest do
             </title>
             <link>#{item_link2}</link>
             <description>
-              <![CDATA[<h1>#{title2}</h1><a href=#{item_link2}>[...]</a>]]>
+              <![CDATA[#{item_cdata2}]]>
             </description>
             <pubDate>Thu, 15 Jun 2017 15:18:39 +0000</pubDate>
             <guid isPermaLink="true">#{item_link2}</guid>

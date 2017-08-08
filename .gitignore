@@ -28,3 +28,4 @@ blogit
 rel/blogit_web
 log
 blog
+.deliver/releases/

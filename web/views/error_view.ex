@@ -1,4 +1,7 @@
 defmodule BlogitWeb.ErrorView do
+  @moduledoc """
+  A set of functions for rendering of errors.
+  """
   use BlogitWeb.Web, :view
 
   def render("404.html", assigns) do

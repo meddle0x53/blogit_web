@@ -65,7 +65,7 @@ defmodule BlogitWeb.Repo do
   * "author" - Used to filter posts by their `.meta.author` field.
   * "category" - Used to filter posts by their `.meta.category` field.
   * "tags" - Used to filter posts by their `.meta.tags` field.
-    The value for this key should a string of comma separated tags.
+    The value for this key should be a string of comma separated tags.
   * "year" - Used to filter posts by their `.meta.year` field.
   * "month" - Used to filter posts by their `.meta.month` field.
   * "q" - A query to filter posts by their content or title. Supports text in
@@ -97,6 +97,32 @@ defmodule BlogitWeb.Repo do
       params, from: from(page, per_page), size: per_page, language: locale
     )
   end
+
+  @doc """
+  Retrieves all the pinned posts from `Blogit` as a list of tuples.
+  Every such tuple has the id of a post as first element and its title as
+  second . These tuples are sorted by the last updated date of the posts
+  they represent.
+
+  Pinned posts are posts which have specified `pinned: true` in their meta
+  data.
+  """
+  @spec list_pinned_posts(String.t) :: [{String.t, String.t}]
+  def list_pinned_posts(locale), do: backend().list_pinned(language: locale)
+
+  @doc """
+  Returns a list of tuples of three elements representing post statistics.
+
+  The first element of a tuple is a year.
+  The second is a month number.
+  The third is a counter - how many posts are created during that month
+  and that year.
+
+  The tuples are sorted from the newest to the oldest, using the years
+  and the months.
+  """
+  @spec posts_by_dates(String.t) :: Blogit.Models.Post.year_month_count_result
+  def posts_by_dates(locale), do: backend().posts_by_dates(language: locale)
 
   ###########
   # Private #

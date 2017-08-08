@@ -56,25 +56,23 @@ defmodule BlogitWeb.RepoTest do
   describe "get" do
     test "returns a post by its name if invoked with `Blogit.Models.Post`, " <>
     "the result is in the form the backend returns it" do
-      post = BlogitWeb.Repo.get(Blogit.Models.Post, "post2", "en")
+      {:ok, post} = BlogitWeb.Repo.get(Blogit.Models.Post, "post2", "en")
 
-      assert post != :error
       assert post.name == "post2"
     end
 
     test "returns a post by its name if invoked with `Blogit.Models.Post`, " <>
     "the result is in the form the backend returns it; Not found case" do
-      post = BlogitWeb.Repo.get(Blogit.Models.Post, "post20", "en")
+      {:error, msg} = BlogitWeb.Repo.get(Blogit.Models.Post, "post20", "en")
 
-      assert post == :error
+      assert msg == "post not found"
     end
 
     test "returns a post by its name if invoked with `Blogit.Models.Post`, " <>
     "the result is in the form the backend returns it; The given `lacale` " <>
     "is passed to the backend" do
-      post = BlogitWeb.Repo.get(Blogit.Models.Post, "публикация2", "bg")
+      {:ok, post} = BlogitWeb.Repo.get(Blogit.Models.Post, "публикация2", "bg")
 
-      assert post != :error
       assert post.name == "публикация2"
     end
 

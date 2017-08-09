@@ -283,7 +283,7 @@ body {
   float: left;
   margin-right: 6px;
   margin-top: 6px;
-  background-image: url('/images/feedicon.png');
+  background-image: url("/images/feedicon.png");
   background-size: 20px;
 }
 

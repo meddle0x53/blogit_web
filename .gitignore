@@ -28,4 +28,5 @@ blogit
 rel/blogit_web
 log
 blog
+blog-staging
 .deliver/releases/

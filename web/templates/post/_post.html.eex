@@ -1,4 +1,4 @@
-<div class="post-row">
+<div class="post-row" id="post-<%= @post.name %>" data-turbolinks-permanent>
   <article class="post">
     <h2 class="post-title-container">
       <a class="post-title-link" href="<%= post_path(@conn, :show, @post.name) %>">

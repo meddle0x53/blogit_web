@@ -7,16 +7,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <meta name="csrf-token" content="<%= get_csrf_token() %>">
+    <meta name="csrf-param" content="_csrf_token">
+
     <title><%= BlogitWeb.PostView.title(assigns) %></title>
+
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="alternate" type="application/rss+xml" title="<%= assigns[:blog].title %>" href="<%= feed_url(@conn, :index) %>">
+
     <%= blog_image_styles(@conn, assigns) %>
     <%= blog_custom_styles(@conn, assigns) %>
-
-    <!-- Generate link alternate tags -->
-    <%= for {lang, path} <- language_annotations(@conn) do %>
-      <%= Phoenix.HTML.Tag.tag(:link, rel: "alternate", hreflang: lang, href: path) %>
-    <% end %>
   </head>
 
   <body>
@@ -27,7 +27,7 @@
         <%= if Enum.count(Blogit.Settings.languages()) > 1 do %>
           <div class="nav-segment"><%= gettext "Languages" %></div>
           <%= for {link, text, class} <- language_links(@conn) do %>
-            <li class="<%= class %>"><a href="<%= link %>"><%= text %></a></li>
+            <li class="<%= class %>"><a href="<%= link %>" data-turbolinks="false"><%= text %></a></li>
           <% end %>
         <% end %>
 
@@ -53,38 +53,8 @@
 
         <%= if BlogitWeb.LayoutView.has_social_links?(assigns[:blog])  do %>
           <div class="nav-segment"><%= gettext "Links" %></div>
-          <%= if assigns[:blog].social && assigns[:blog].social["rss"] do %>
-            <li class="rss-subscribe-link">
-              <span class="btn-rss"></span>
-              <%= link(gettext("RSS - posts"), to: feed_path(@conn, :index)) %>
-            </li>
-          <% end %>
 
-          <%= if assigns[:blog].social && assigns[:blog].social["twitter"] do %>
-            <li class="follow-link">
-              <a class="twitter-follow-button" data-show-screen-name="false" href="<%= "https://twitter.com/" <> assigns[:blog].social["twitter"] %>">Follow me on Twitter</a>
-            </li>
-          <% end %>
-          <%= if assigns[:blog].social && assigns[:blog].social["github"] do %>
-            <li class="follow-link">
-              <a class="github-button" href="<%= "https://github.com/" <> assigns[:blog].social["github"] %>" data-show-count="true" aria-label="Follow me on GitHub"><%= gettext "Follow me on Github" %></a>
-            </li>
-          <% end %>
-          <%= if assigns[:blog].social && assigns[:blog].social["stars_for_blogit"] do %>
-            <li class="follow-link">
-              <a class="github-button" href="https://github.com/meddle0x53/blogit" data-icon="octicon-star" data-show-count="true" aria-label="Star meddle0x53/blogit on GitHub"><%= gettext "Powered by Blogit" %></a>
-            </li>
-          <% end %>
-          <%= if assigns[:blog].social && assigns[:blog].social["stars_for_blogit"] do %>
-            <li class="follow-link">
-              <a class="github-button" href="https://github.com/meddle0x53/blogit_web" data-icon="octicon-star" data-show-count="true" aria-label="Star meddle0x53/blogit on GitHub"><%= gettext "Powered by Blogit Web" %></a>
-            </li>
-          <% end %>
-          <%= if assigns[:blog].social && assigns[:blog].social["facebook"] do %>
-            <li class="follow-link">
-              <div class="fb-follow" data-href="<%= "https://www.facebook.com/" <> assigns[:blog].social["facebook"] %>" data-layout="button_count" data-size="small" data-show-faces="false"></div>
-            </li>
-          <% end %>
+          <%= render BlogitWeb.PostView, "_link_items.html", conn: @conn  %>
         <% end %>
       </ul>
     </nav>
@@ -109,7 +79,7 @@
     </div>
 
     <div class="container">
-      <header class="header">
+      <header class="header" id="blog-header" data-turbolinks-permanent>
         <a class="title-link" href="<%= post_path(@conn, :index)%>">
           <%= blog_logo(@conn, assigns) %>
           <div class="titles">
@@ -126,7 +96,7 @@
           <hr/ >
           <ul class="nav nav-pills">
             <%= for {link, text, class} <- language_links(@conn) do %>
-              <li class="<%= class %>"><a href="<%= link %>"><%= text %></a></li>
+              <li class="<%= class %>"><a href="<%= link %>" data-turbolinks="false"><%= text %></a></li>
             <% end %>
           </ul>
           <hr/ >
@@ -138,7 +108,7 @@
           <div class="col-lg-9">
             <%= render @view_module, @view_template, assigns %>
           </div>
-           <div class="col-md-3 sidebar">
+           <div class="col-md-3 sidebar" id="sidebar-component" data-turbolinks-permanent>
              <%= render @view_module, "sidebar.html", assigns %>
            </div>
         </div>
@@ -148,10 +118,6 @@
     <script>
       $(document).ready(function() { hljs.initHighlighting(); });
     </script>
-
-    <%= if assigns[:blog].social && assigns[:blog].social["github"] do %>
-      <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <% end %>
 
     <%= if assigns[:blog].social && assigns[:blog].social["facebook"] do %>
       <div id="fb-root"></div>
@@ -189,6 +155,10 @@
             return t;
         }(document, "script", "twitter-wjs"));
       </script>
+    <% end %>
+
+    <%= if assigns[:blog].social && (assigns[:blog].social["github"] || assigns[:blog].social["stars_for_blogit"]) do %>
+      <script async defer src="https://buttons.github.io/buttons.js"></script>
     <% end %>
   </body>
 </html>

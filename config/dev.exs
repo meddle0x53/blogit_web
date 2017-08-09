@@ -33,6 +33,5 @@ config :logger, :error_log, path: "log/error.log", level: :error
 config :phoenix, :stacktrace_depth, 20
 
 config :blogit,
-  repository_url: "git@github.com:ElixirCourse/blog-staging.git",
-  polling: true, poll_interval: 120, max_lines_in_preview: 10,
-  assets_path: "assets", languages: ~w(bg en)
+  repository_url: "https://github.com/meddle0x53/blogit_sample",
+  polling: false, max_lines_in_preview: 5, languages: ~w(en bg)

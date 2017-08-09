@@ -1,0 +1,36 @@
+<%= if @conn.assigns[:blog].social && @conn.assigns[:blog].social["rss"] do %>
+  <li class="rss-subscribe-link">
+    <span class="btn-rss"></span>
+    <%= link(gettext("RSS - posts"), to: feed_path(@conn, :index), data: [turbolinks: false]) %>
+  </li>
+<% end %>
+
+<%= if @conn.assigns[:blog].social && @conn.assigns[:blog].social["twitter"] do %>
+  <li class="follow-link">
+    <a class="twitter-follow-button" data-show-screen-name="false" href="<%= "https://twitter.com/" <> @conn.assigns[:blog].social["twitter"] %>">Follow me on Twitter</a>
+  </li>
+<% end %>
+
+<%= if @conn.assigns[:blog].social && @conn.assigns[:blog].social["github"] do %>
+  <li class="follow-link">
+    <a class="github-button" href="<%= "https://github.com/" <> @conn.assigns[:blog].social["github"] %>" data-show-count="true" aria-label="Follow me on GitHub"><%= gettext "Follow me on Github" %></a>
+  </li>
+<% end %>
+
+<%= if @conn.assigns[:blog].social && @conn.assigns[:blog].social["stars_for_blogit"] do %>
+  <li class="follow-link">
+    <a class="github-button" href="https://github.com/meddle0x53/blogit" data-icon="octicon-star" data-show-count="true" aria-label="Star meddle0x53/blogit on GitHub"><%= gettext "Powered by Blogit" %></a>
+  </li>
+<% end %>
+
+<%= if @conn.assigns[:blog].social && @conn.assigns[:blog].social["stars_for_blogit"] do %>
+  <li class="follow-link">
+    <a class="github-button" href="https://github.com/meddle0x53/blogit_web" data-icon="octicon-star" data-show-count="true" aria-label="Star meddle0x53/blogit on GitHub"><%= gettext "Powered by Blogit Web" %></a>
+  </li>
+<% end %>
+
+<%= if @conn.assigns[:blog].social && @conn.assigns[:blog].social["facebook"] do %>
+  <li class="follow-link">
+    <div class="fb-follow" data-href="<%= "https://www.facebook.com/" <> @conn.assigns[:blog].social["facebook"] %>" data-layout="button_count" data-size="small" data-show-faces="false"></div>
+  </li>
+<% end %>

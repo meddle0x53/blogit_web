@@ -32,5 +32,6 @@ config :logger, :error_log, path: "log/error.log", level: :error
 config :logger, :info_log, path: "log/info.log", level: :info
 
 config :blogit,
-  repository_url: "https://github.com/ElixirCourse/blog.git",
-  polling: true, poll_interval: 300, assets_path: "assets"
+  repository_url: "https://github.com/meddle0x53/blogit_sample",
+  polling: true, poll_interval: 300, max_lines_in_preview: 5,
+  languages: ~w(en bg)

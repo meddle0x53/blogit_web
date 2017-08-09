@@ -12,6 +12,9 @@
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
+import Turbolinks from 'turbolinks'
+
+Turbolinks.start()
 
 // Import local files
 //
@@ -64,6 +67,13 @@ $(document).ready(function () {
     Markit.mark();
 
     $('.post-stream .post pre').not('.hljs').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
+  });
+
+  document.addEventListener("turbolinks:render", function() {
+    console.log("Debug");
+    $('.post pre').not('.hljs').each(function(i, block) {
       hljs.highlightBlock(block);
     });
   });

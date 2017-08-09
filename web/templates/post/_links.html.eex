@@ -1,0 +1,11 @@
+<%= if BlogitWeb.LayoutView.has_social_links?(@conn.assigns[:blog])  do %>
+  <div class="well" id="social-links-well">
+    <ul class="nav">
+      <li class="nav-header post-title">
+        <a href="<%= post_path(@conn, :index) %>"><%= gettext "Links" %></a>
+      </li>
+
+      <%= render "_link_items.html", conn: @conn  %>
+    </ul>
+  </div>
+<% end %>

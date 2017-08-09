@@ -18,7 +18,8 @@ defmodule BlogitWeb.Mixfile do
      applications: [:blogit, :calendar, :phoenix, :phoenix_pubsub,
       :phoenix_html, :cowboy, :logger, :gettext, :edeliver],
     included_applications: [
-      :calendar_translations, :earmark, :git_cli, :logger_file_backend
+      :calendar_translations, :earmark, :git_cli, :logger_file_backend,
+      :turbolinks
     ]]
   end
 
@@ -38,6 +39,7 @@ defmodule BlogitWeb.Mixfile do
      {:edeliver, "~> 1.4.4"},
      {:distillery, "~> 1.1"},
      {:logger_file_backend, "0.0.9"},
+     {:turbolinks, "~> 0.1.0"},
      {:blogit, "~> 1.1.0"}]
   end
 

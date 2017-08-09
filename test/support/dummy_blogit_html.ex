@@ -88,7 +88,7 @@ defmodule DummyBlogitHTML do
   """
 
   @en_post_whole_html3 """
-  <div class="post-row">
+  <div class="post-row" id="post-post3" data-turbolinks-permanent>
     <article class="post">
       <h2 class="post-title-container">
         <a class="post-title-link" href="/posts/post3">
@@ -171,7 +171,7 @@ defmodule DummyBlogitHTML do
   """
 
   @bg_post_whole_html1 """
-  <div class="post-row">
+  <div class="post-row" id="post-публикация1" data-turbolinks-permanent>
     <article class="post">
       <h2 class="post-title-container">
         <a class="post-title-link" href="/bg/posts/%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F1">

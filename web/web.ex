@@ -19,6 +19,7 @@ defmodule BlogitWeb.Web do
   def controller do
     quote do
       use Phoenix.Controller
+      use Turbolinks
 
       alias BlogitWeb.Repo
 

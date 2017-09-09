@@ -33,5 +33,5 @@ config :logger, :error_log, path: "log/error.log", level: :error
 config :phoenix, :stacktrace_depth, 20
 
 config :blogit,
-  repository_url: "https://github.com/meddle0x53/blogit_sample",
+  repository_url: "https://github.com/meddle0x53/themeddle",
   polling: false, max_lines_in_preview: 5, languages: ~w(en bg)

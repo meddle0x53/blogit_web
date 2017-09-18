@@ -44,6 +44,21 @@ defmodule BlogitWeb.PostView do
     {:safe, "<div class='post-tags'>#{description} #{tags_span}</div>"}
   end
 
+  def disqus_url(conn) do
+    disqus_host = Application.get_env(:blogit_web, BlogitWeb.Endpoint)[:disqus_host]
+    if disqus_host do
+      disqus_host
+    else
+      url = Application.get_env(:blogit_web, BlogitWeb.Endpoint)[:url]
+
+      if url && url[:host] do
+        url[:host]
+      else
+        conn.host |> String.replace(".", "-")
+      end
+    end
+  end
+
   defp category_span(conn, category) do
     category_link = """
       <a href="#{post_path(conn, :index, category: category)}">#{category}</a>

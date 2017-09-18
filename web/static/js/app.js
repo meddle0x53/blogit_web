@@ -26,6 +26,9 @@ Turbolinks.start()
 //import { Posts } from "./posts"
 //Posts.setup();
 
+import { MultyCode } from "./multicode"
+
+
 var Markit = {
   param: function(name) {
     var url = window.location.search.substring(1);
@@ -77,4 +80,6 @@ $(document).ready(function () {
       hljs.highlightBlock(block);
     });
   });
+
+  MultyCode.run();
 });

@@ -17,6 +17,7 @@ config :blogit_web, BlogitWeb.Endpoint,
   cache_static_manifest: "priv/static/manifest.json",
   server: true,
   root: ".",
+  disqus_host: "themeddle-com",
   version: Mix.Project.config[:version]
 
 config :phoenix, :serve_endpoints, true

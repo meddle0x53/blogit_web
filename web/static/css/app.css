@@ -345,3 +345,11 @@ pre {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
+
+code.multi-inline.active {
+  display: inline;
+}
+
+code.multi-inline {
+  display: none;
+}

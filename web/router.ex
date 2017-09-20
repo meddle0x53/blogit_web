@@ -8,7 +8,6 @@ defmodule BlogitWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug BlogitWeb.Plugs.Locales
-    plug Turbolinks
   end
 
   pipeline :api do

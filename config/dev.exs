@@ -11,7 +11,7 @@ config :blogit_web, BlogitWeb.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  disqus_host: "elixir-lang-bg",
+  disqus_host: "themeddle-com",
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
                     cd: Path.expand("../", __DIR__)]]
 

@@ -2,6 +2,7 @@ var MultyCode = {
   run() {
     let hash = window.location.hash.substr(1);
     let hashed = false;
+    let allLanguages = null;
 
     $('pre.multi-code').each((index, el) => {
       let tags = [];
@@ -21,6 +22,7 @@ var MultyCode = {
       let $activeLink = null;
       let $activePane = null;
 
+      let languages = [];
       tags.forEach($pre => {
         $pre.remove();
 
@@ -40,7 +42,13 @@ var MultyCode = {
 
           hashed = true;
         }
+
+        languages.push(language);
       });
+
+      if (allLanguages === null) {
+        allLanguages = languages.reverse();
+      }
 
       if (!hashed) {
         $activeLink.addClass('active');
@@ -55,6 +63,7 @@ var MultyCode = {
         let id = $(this).attr('href');
 
         $('.multi-code-container ' + id).addClass('active');
+        $('code.multi-inline' + id).addClass('active');
       });
 
       $('a.multi-code').click(function (e) {
@@ -65,13 +74,36 @@ var MultyCode = {
         MultyCode.deactivateAll();
 
         $('.multi-code-container ' + id).addClass('active');
+        $('code.multi-inline' + id).addClass('active');
       });
+
+      $(el).removeClass('multi-code')
     });
+
+    if (allLanguages === null || allLanguages.length === 0) {
+      return;
+    }
+    let currentLanguage = allLanguages[0];
+    if (hashed) {
+      currentLanguage = hash;
+    }
+
+    $('em:contains(multi-code)').each((index, el) => {
+      let $codes = $(el).prevUntil(':not(code)');
+      $codes.addClass('multi-inline');
+
+      $codes.each((index, el) => {
+        $(el).attr('id', allLanguages[allLanguages.length - 1 - index]);
+      });
+    }).remove();
+
+    $('code.multi-inline#' + currentLanguage).addClass('active');
   },
 
   deactivateAll() {
     $('.multi-code-container li').removeClass('active');
     $('.multi-code-container pre.tab-pane').removeClass('active');
+    $('code.multi-inline').removeClass('active');
   }
 };
 

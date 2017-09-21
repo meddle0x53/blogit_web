@@ -90,6 +90,7 @@ var MultyCode = {
 
     $('em:contains(multi-code)').each((index, el) => {
       let $codes = $(el).prevUntil(':not(code)');
+      $codes.length = allLanguages.length;
       $codes.addClass('multi-inline');
 
       $codes.each((index, el) => {

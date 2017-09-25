@@ -1,6 +1,6 @@
 var MultyCode = {
   run() {
-    let hash = window.location.hash.substr(1);
+    let hash = MultyCode.getURLLang();
     let hashed = false;
     let allLanguages = null;
 
@@ -105,6 +105,16 @@ var MultyCode = {
     $('.multi-code-container li').removeClass('active');
     $('.multi-code-container pre.tab-pane').removeClass('active');
     $('code.multi-inline').removeClass('active');
+  },
+
+  getURLLang() {
+    let queryRegex = new RegExp('[?&]lang=([^&]*)');
+    let match = queryRegex.exec(window.location.search)
+
+    if (match === null) {
+      return null;
+    }
+    return window.decodeURIComponent(match[1]);
   }
 };
 

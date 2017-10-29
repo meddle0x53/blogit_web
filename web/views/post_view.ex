@@ -70,8 +70,8 @@ defmodule BlogitWeb.PostView do
     {:safe, "<div class='post-category'>#{text}</div>"}
   end
 
-  defp format_date(date) do
-    locale = BlogitWeb.Gettext |> Gettext.get_locale() |> String.to_atom
+  defp format_date(conn, date) do
+    locale = BlogitWeb.LayoutView.real_locale(conn) |> String.to_atom
     Calendar.Strftime.strftime!(date, "%A, %d %B %Y, %H:%M", locale)
   end
 end

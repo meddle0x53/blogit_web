@@ -54,7 +54,7 @@
       <%= for {year, month, count} <- @posts_by_dates do %>
         <li class="postLink">
           <a href="<%= post_path(@conn, :index, month: month, year: year) %>">
-            <%= "#{{year, month, 1} |> Calendar.Strftime.strftime!("%B %Y", String.to_atom(@conn.assigns[:locale])) |> String.capitalize} (#{count})" %>
+            <%= "#{{year, month, 1} |> Calendar.Strftime.strftime!("%B %Y", String.to_atom(BlogitWeb.LayoutView.real_locale(@conn))) |> String.capitalize} (#{count})" %>
           </a>
         </li>
       <% end %>

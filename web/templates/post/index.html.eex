@@ -14,7 +14,7 @@
         </p>
         <hr class="before-post-date" />
         <div class="post-date">
-          <%= gettext("Posted on") %> <span class="post-author-created"><%= format_date post.created_at %></span>
+          <%= gettext("Posted on") %> <span class="post-author-created"><%= format_date(@conn, post.created_at) %></span>
         </div>
         <hr class="after-post-date" />
         <%= post_image(@conn, post) %>

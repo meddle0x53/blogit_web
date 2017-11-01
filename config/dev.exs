@@ -27,7 +27,7 @@ config :blogit_web, BlogitWeb.Endpoint,
     ]
   ]
 
-config :blogit_web, locales_map: %{"mu" => "en"}
+config :blogit_web, locales_map: %{"mu" => "en", "poetry" => "bg"}
 
 config :logger, format: "[$level] $message\n",
   backends: [{LoggerFileBackend, :error_log}, :console]
@@ -37,4 +37,4 @@ config :phoenix, :stacktrace_depth, 20
 
 config :blogit,
   repository_url: "https://github.com/meddle0x53/themeddle",
-  polling: false, max_lines_in_preview: 5, languages: ~w(en bg mu)
+  polling: false, max_lines_in_preview: 5, languages: ~w(en bg mu poetry)

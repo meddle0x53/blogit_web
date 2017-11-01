@@ -59,6 +59,9 @@ msgstr "Български"
 msgid "mu"
 msgstr "Music"
 
+msgid "poetry"
+msgstr "Poetry (in Bulgarian)"
+
 #: web/templates/layout/post.html.eex:28
 msgid "Languages"
 msgstr ""

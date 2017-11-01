@@ -9,7 +9,7 @@ config :blogit_web, BlogitWeb.Endpoint,
   disqus_host: "themeddle-com",
   version: Mix.Project.config[:version]
 
-config :blogit_web, locales_map: %{"mu" => "en"}
+config :blogit_web, locales_map: %{"mu" => "en", "poetry" => "bg"}
 
 config :phoenix, :serve_endpoints, true
 
@@ -26,4 +26,4 @@ config :logger, :info_log, path: "log/info.log", level: :info
 config :blogit,
   repository_url: "https://github.com/meddle0x53/themeddle",
   polling: true, poll_interval: 300, max_lines_in_preview: 5,
-  languages: ~w(en bg mu)
+  languages: ~w(en bg mu poetry)

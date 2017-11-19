@@ -2,7 +2,7 @@ use Mix.Config
 
 config :blogit_web, BlogitWeb.Endpoint,
   http: [port: 8888],
-  url: [host: "themeddle.com", port: 80],
+  url: [host: "themeddle.com", port: 443, scheme: "https"],
   cache_static_manifest: "priv/static/manifest.json",
   server: true,
   root: ".",

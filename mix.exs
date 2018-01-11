@@ -27,18 +27,18 @@ defmodule BlogitWeb.Mixfile do
   defp elixirc_paths(_),     do: ["lib", "web"]
 
   defp deps do
-    [{:phoenix, "~> 1.2.1"},
+    [{:phoenix, "~> 1.2"},
      {:phoenix_pubsub, "~> 1.0"},
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:calendar, "~> 0.17.3"},
+     {:calendar, "~> 0.17"},
      {:calendar_translations, "~> 0.0.4"},
-     {:edeliver, "~> 1.4.4"},
+     {:edeliver, "~> 1.4"},
      {:distillery, "~> 1.1"},
      {:logger_file_backend, "0.0.9"},
-     {:blogit, "~> 1.1.1"}]
+     {:blogit, "~> 1.2"}]
   end
 
   defp aliases do

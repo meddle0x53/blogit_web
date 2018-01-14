@@ -2,7 +2,7 @@
 <rss version="2.0">
   <channel>
     <title><%= assigns[:blog].title %></title>
-    <description><%= assigns[:blog].sub_title %></description>
+    <description><%= assigns[:blog].title %></description>
     <link><%= post_url(@conn, :index) %></link>
     <%= for post <- @items do %>
       <item>

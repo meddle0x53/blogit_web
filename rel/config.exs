@@ -31,12 +31,6 @@ environment :prod do
   set cookie: :"ae3%2]M:MPC4TK]o]Lj{tfffBtV/{Cvre?9_FFY96.=|z]9mv:H`E{0m{TLl,HC]"
 end
 
-# You may define one or more releases in this file.
-# If you have not set a default release, or selected one
-# when running `mix release`, the first release in the file
-# will be used by default
-
 release :blogit_web do
   set version: current_version(:blogit_web)
 end
-

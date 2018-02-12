@@ -1,11 +1,11 @@
 use Mix.Config
 
 # General application configuration
-config :blogit_web,
+config :elixirlang,
   ecto_repos: [BlogitWeb.Repo]
 
 # Configures the endpoint
-config :blogit_web, BlogitWeb.Endpoint,
+config :elixirlang, BlogitWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "Sb/ttEadRlXB1E+P8/em9tXKUpBgGyf/mi7WwoAbhwYOf1EfsGILRZthHTXNDk2/",
   render_errors: [view: BlogitWeb.ErrorView, accepts: ~w(html json)],
@@ -17,7 +17,7 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :blogit_web, BlogitWeb.Gettext, default_locale: "en"
+config :elixirlang, BlogitWeb.Gettext, default_locale: "en"
 config :calendar, :translation_module, CalendarTranslations.Translations
 
 # Import environment specific config. This must remain at the bottom

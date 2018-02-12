@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :blogit_web, BlogitWeb.Endpoint,
+config :elixirlang, BlogitWeb.Endpoint,
   http: [port: 4001],
   server: false
 

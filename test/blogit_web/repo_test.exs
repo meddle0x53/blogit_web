@@ -2,7 +2,7 @@ defmodule BlogitWeb.RepoTest do
   use ExUnit.Case
 
   setup_all do
-    Application.put_env(:blogit_web, :backend_implementation, DummyBlogit)
+    Application.put_env(:elixirlang, :backend_implementation, DummyBlogit)
     :ok
   end
 

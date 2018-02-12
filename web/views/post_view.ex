@@ -45,11 +45,11 @@ defmodule BlogitWeb.PostView do
   end
 
   def disqus_url(conn) do
-    disqus_host = Application.get_env(:blogit_web, BlogitWeb.Endpoint)[:disqus_host]
+    disqus_host = Application.get_env(:elixirlang, BlogitWeb.Endpoint)[:disqus_host]
     if disqus_host do
       disqus_host
     else
-      url = Application.get_env(:blogit_web, BlogitWeb.Endpoint)[:url]
+      url = Application.get_env(:elixirlang, BlogitWeb.Endpoint)[:url]
 
       if url && url[:host] do
         url[:host]

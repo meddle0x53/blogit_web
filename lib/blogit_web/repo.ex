@@ -139,6 +139,6 @@ defmodule BlogitWeb.Repo do
   defp from(n, per_page), do: (n - 1) * per_page
 
   defp backend do
-    Application.get_env(:blogit_web, :backend_implementation, Blogit)
+    Application.get_env(:elixirlang, :backend_implementation, Blogit)
   end
 end

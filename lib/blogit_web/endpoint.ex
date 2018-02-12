@@ -1,8 +1,8 @@
 defmodule BlogitWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :blogit_web
+  use Phoenix.Endpoint, otp_app: :elixirlang
 
   plug Plug.Static,
-    at: "/", from: :blogit_web, gzip: false,
+    at: "/", from: :elixirlang, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   plug Plug.Static,
@@ -16,7 +16,7 @@ defmodule BlogitWeb.Endpoint do
     only: ~w(slides)
 
   plug Plug.Static,
-    at: "zohoverify/", from: :blogit_web, gzip: false,
+    at: "zohoverify/", from: :elixirlang, gzip: false,
     only: ~w(verifyforzoho.html)
 
   if code_reloading? do

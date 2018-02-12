@@ -18,6 +18,6 @@ environment :prod do
   set cookie: :"ae3%2]M:MPC4TK]o]Lj{tfffBtV/{Cvre?9_FFY96.=|z]9mv:H`E{0m{TLl,HC]"
 end
 
-release :blogit_web do
-  set version: current_version(:blogit_web)
+release :elixirlang do
+  set version: current_version(:elixirlang)
 end

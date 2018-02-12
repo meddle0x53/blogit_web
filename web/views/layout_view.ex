@@ -95,7 +95,7 @@ defmodule BlogitWeb.LayoutView do
   end
 
   def real_locale(conn) do
-    Application.get_env(:blogit_web, :locales_map, %{})
+    Application.get_env(:elixirlang, :locales_map, %{})
     |> Map.get(conn.assigns[:locale], conn.assigns[:locale])
   end
 end

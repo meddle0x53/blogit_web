@@ -76,7 +76,7 @@ defmodule BlogitWeb.FeedControllerTest do
   end
 
   setup_all do
-    Application.put_env(:blogit_web, :backend_implementation, DummyBlogit); :ok
+    Application.put_env(:elixirlang, :backend_implementation, DummyBlogit); :ok
   end
 
   test "GET /", %{conn: conn} do

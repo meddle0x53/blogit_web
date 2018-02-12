@@ -2,8 +2,8 @@ defmodule BlogitWeb.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :blogit_web,
-     version: "0.15.0",
+    [app: :elixirlang,
+     version: "0.15.1",
      elixir: "~> 1.5",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,

@@ -1,4 +1,4 @@
-APP="blogit_web"
+APP="elixirlang"
 
 BUILD_HOST="165.227.142.119"
 BUILD_USER="elixirlang"

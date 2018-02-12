@@ -1,10 +1,10 @@
-APP="elixirlang"
+APP="blogit_web"
 
 BUILD_HOST="165.227.142.119"
 BUILD_USER="elixirlang"
-BUILD_AT="/tmp/edeliver/$APP/builds"
+BUILD_AT="/tmp/edeliver_elixirlang/$APP/builds"
 
-RELEASE_DIR="/tmp/edeliver/$APP/builds/_build/prod/rel/$APP"
+RELEASE_DIR="/tmp/edeliver_elixirlang/$APP/builds/_build/prod/rel/$APP"
 
 # prevent re-installing node modules; this defaults to "."
 GIT_CLEAN_PATHS="_build rel priv/static"

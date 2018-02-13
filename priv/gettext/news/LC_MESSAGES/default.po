@@ -54,7 +54,7 @@ msgid "en"
 msgstr "English"
 
 msgid "bg"
-msgstr "Български"
+msgstr "Материали"
 
 msgid "archive"
 msgstr "Материали (2017)"

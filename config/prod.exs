@@ -26,4 +26,4 @@ config :logger, :info_log, path: "log/info.log", level: :info
 config :blogit,
   repository_url: "https://github.com/ElixirCourse/blog",
   polling: true, poll_interval: 300, max_lines_in_preview: 5,
-  languages: ~w(news bg archive en)
+  languages: ~w(bg news archive en)

@@ -54,10 +54,10 @@ msgid "en"
 msgstr "English"
 
 msgid "bg"
-msgstr "Български"
+msgstr "Материали"
 
 msgid "archive"
-msgstr "Архив"
+msgstr "Материали (2017)"
 
 msgid "news"
 msgstr "Новини"

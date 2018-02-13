@@ -54,7 +54,7 @@ msgid "en"
 msgstr "English"
 
 msgid "bg"
-msgstr "Български"
+msgstr "Posts In Bulgarian"
 
 msgid "archive"
 msgstr "Old Posts (2017, Bulgarian)"

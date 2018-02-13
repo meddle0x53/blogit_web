@@ -48,7 +48,7 @@ msgstr "Важни публикации"
 
 #: web/templates/layout/post.html.eex:43 web/templates/post/sidebar.html.eex:90
 msgid "Archive"
-msgstr "Материали (2017)"
+msgstr "Архив"
 
 msgid "en"
 msgstr "English"
@@ -57,7 +57,7 @@ msgid "bg"
 msgstr "Български"
 
 msgid "archive"
-msgstr "Архив"
+msgstr "Материали (2017)"
 
 msgid "news"
 msgstr "Новини"

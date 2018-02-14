@@ -6,7 +6,7 @@ config :elixirlang, BlogitWeb.Endpoint,
   cache_static_manifest: "priv/static/manifest.json",
   server: true,
   root: ".",
-  disqus_host: "elixir-lang.bg",
+  disqus_host: "elixir-lang-bg",
   version: Mix.Project.config[:version]
 
 config :phoenix, :serve_endpoints, true

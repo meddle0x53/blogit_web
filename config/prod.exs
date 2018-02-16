@@ -17,7 +17,7 @@ config :logger, level: :info, format: "[$level] $message\n",
     :console
   ]
 
-config :elixirlang, locales_map: %{"archive" => "bg", "news" => "bg"}
+config :elixirlang, locales_map: %{"archive" => "bg", "materials" => "bg", "news" => "bg"}
 
 config :logger, :error_log, path: "log/error.log", level: :error
 config :logger, :info_log, path: "log/info.log", level: :info
@@ -26,4 +26,4 @@ config :logger, :info_log, path: "log/info.log", level: :info
 config :blogit,
   repository_url: "https://github.com/ElixirCourse/blog",
   polling: true, poll_interval: 300, max_lines_in_preview: 5,
-  languages: ~w(bg news archive en)
+  languages: ~w(news materials archive en)

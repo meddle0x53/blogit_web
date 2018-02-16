@@ -53,14 +53,14 @@ msgstr "Материали (2017)"
 msgid "en"
 msgstr "English"
 
-msgid "bg"
-msgstr "Материали"
+msgid "news"
+msgstr "Новини"
 
 msgid "archive"
 msgstr "Материали (2017)"
 
-msgid "news"
-msgstr "Новини"
+msgid "materials"
+msgstr "Материали"
 
 #: web/templates/layout/post.html.eex:28
 msgid "Languages"

@@ -53,14 +53,14 @@ msgstr ""
 msgid "en"
 msgstr "English"
 
-msgid "bg"
-msgstr "Posts In Bulgarian"
+msgid "news"
+msgstr "News"
 
 msgid "archive"
 msgstr "Old Posts (2017, Bulgarian)"
 
-msgid "news"
-msgstr "News"
+msgid "materials"
+msgstr "Posts In Bulgarian"
 
 #: web/templates/layout/post.html.eex:28
 msgid "Languages"

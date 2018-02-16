@@ -3,7 +3,7 @@ defmodule BlogitWeb.Mixfile do
 
   def project do
     [app: :elixirlang,
-     version: "0.15.5",
+     version: "0.15.6",
      elixir: "~> 1.5",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,

@@ -1,4 +1,4 @@
-defmodule BlogitWeb.PostController do
+defmodule BlogitWeb.Web.PostController do
   @moduledoc """
   A controller module serving the requests for the post stream of the blog and
   for the individual posts.
@@ -33,7 +33,7 @@ defmodule BlogitWeb.PostController do
   The request parameters for filtering posts could be one or more of:
   * `author` - Used to filter posts by their author.
   * `category` - Used to filter posts by their category. Could be the word
-  returned by `BlogitWeb.Gettext.gettext("uncategorized")` for the given
+  returned by `BlogitWeb.Web.Gettext.gettext("uncategorized")` for the given
   `locale` and it will filter the uncategorized posts.
   * `tags` - Used to filter posts by their tags.
     The value for this parameter should be a string of comma separated tags.

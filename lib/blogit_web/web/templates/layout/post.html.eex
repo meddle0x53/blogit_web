@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="<%= get_csrf_token() %>">
     <meta name="csrf-param" content="_csrf_token">
 
-    <title><%= BlogitWeb.PostView.title(assigns) %></title>
+    <title><%= BlogitWeb.Web.PostView.title(assigns) %></title>
 
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="alternate" type="application/rss+xml" title="<%= assigns[:blog].title %>" href="<%= feed_url(@conn, :index) %>">
@@ -21,7 +21,7 @@
 
   <body>
     <nav class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
-      <a class="navmenu-brand" href="#"><%= BlogitWeb.PostView.title(assigns) %></a>
+      <a class="navmenu-brand" href="#"><%= BlogitWeb.Web.PostView.title(assigns) %></a>
       <ul class="nav navmenu-nav">
 
         <%= if Enum.count(Blogit.Settings.languages()) > 1 do %>
@@ -45,16 +45,16 @@
           <%= for {year, month, count} <- @posts_by_dates do %>
             <li>
               <a href="<%= post_path(@conn, :index, month: month, year: year) %>">
-                <%= "#{{year, month, 1} |> Calendar.Strftime.strftime!("%B %Y", String.to_atom(BlogitWeb.LayoutView.real_locale(@conn))) |> String.capitalize} (#{count})" %>
+                <%= "#{{year, month, 1} |> Calendar.Strftime.strftime!("%B %Y", String.to_atom(BlogitWeb.Web.LayoutView.real_locale(@conn))) |> String.capitalize} (#{count})" %>
               </a>
             </li>
           <% end %>
         <% end %>
 
-        <%= if BlogitWeb.LayoutView.has_social_links?(assigns[:blog])  do %>
+        <%= if BlogitWeb.Web.LayoutView.has_social_links?(assigns[:blog])  do %>
           <div class="nav-segment"><%= gettext "Links" %></div>
 
-          <%= render BlogitWeb.PostView, "_link_items.html", conn: @conn  %>
+          <%= render BlogitWeb.Web.PostView, "_link_items.html", conn: @conn  %>
         <% end %>
       </ul>
     </nav>

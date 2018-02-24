@@ -1,5 +1,5 @@
 defmodule BlogitWeb.FeedControllerTest do
-  use BlogitWeb.ConnCase
+  use BlogitWeb.Web.ConnCase
 
   def assert_rss(conn, content) do
     assert conn.status == 200

@@ -1,5 +1,5 @@
 defmodule BlogitWeb.PostControllerTest do
-  use BlogitWeb.ConnCase
+  use BlogitWeb.Web.ConnCase
 
   setup_all do
     Application.put_env(:blogit_web, :backend_implementation, DummyBlogit); :ok

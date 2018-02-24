@@ -1,8 +1,8 @@
-defmodule BlogitWeb.PageController do
+defmodule BlogitWeb.Web.PageController do
   @moduledoc """
   A controller module serving the requests to the root of the server's domain.
 
-  It has only `index` action, which redirects to the `BlogitWeb.PostController`
+  It has only `index` action, which redirects to the `BlogitWeb.Web.PostController`
   `index` action. In other words request to `/` is the same as request to
   `/posts`.
   """

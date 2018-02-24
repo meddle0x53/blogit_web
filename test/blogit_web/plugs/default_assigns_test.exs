@@ -1,5 +1,5 @@
 defmodule BlogitWeb.Plugs.DefaultAssignsTest do
-  use BlogitWeb.ConnCase
+  use BlogitWeb.Web.ConnCase
 
   test "assigns the values passed on initializiation as assigns of the " <>
   "connection", %{conn: conn} do

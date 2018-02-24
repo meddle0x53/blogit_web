@@ -26,13 +26,13 @@ defmodule BlogitWeb.Helpers do
 
   ## Examples
 
-      iex> Gettext.put_locale(BlogitWeb.Gettext, "es")
+      iex> Gettext.put_locale(BlogitWeb.Web.Gettext, "es")
       iex> BlogitWeb.Helpers.current_locale()
       "es"
   """
   @spec current_locale() :: String.t
   def current_locale do
-    Gettext.get_locale(BlogitWeb.Gettext)
+    Gettext.get_locale(BlogitWeb.Web.Gettext)
   end
 
   @doc """
@@ -61,7 +61,7 @@ defmodule BlogitWeb.Helpers do
     quote do
       name = String.to_atom("#{unquote(resource)}_path")
       arguments = [unquote(conn), unquote(endpoint)]
-      path = apply(BlogitWeb.Router.Helpers, name, arguments)
+      path = apply(BlogitWeb.Web.Router.Helpers, name, arguments)
       locale = BlogitWeb.Helpers.current_locale()
 
       if locale != Blogit.Settings.default_language() do
@@ -76,7 +76,7 @@ defmodule BlogitWeb.Helpers do
   defmacro __using__(_params) do
     funcs =
       :functions
-      |> BlogitWeb.Router.Helpers.module_info()
+      |> BlogitWeb.Web.Router.Helpers.module_info()
       |> Enum.filter(fn {fname, _} ->  fname != :static_path end)
       |> Enum.filter(fn {fname, _} ->  fname != :static_url end)
       |> Enum.filter(fn {fname, _} ->
@@ -89,14 +89,14 @@ defmodule BlogitWeb.Helpers do
       args = create_args(__MODULE__, arity)
       quote do
         def unquote(fname)(unquote_splicing(args)) do
-          link = apply(BlogitWeb.Router.Helpers, unquote(fname), unquote(args))
+          link = apply(BlogitWeb.Web.Router.Helpers, unquote(fname), unquote(args))
           locale = BlogitWeb.Helpers.current_locale()
 
           if locale != Blogit.Settings.default_language() do
             path_func = String.to_atom(
               String.replace(unquote(to_string(fname)), "url", "path")
             )
-            path = apply(BlogitWeb.Router.Helpers, path_func, unquote(args))
+            path = apply(BlogitWeb.Web.Router.Helpers, path_func, unquote(args))
             String.replace(
               link, path, "/#{locale}#{path}"
             )

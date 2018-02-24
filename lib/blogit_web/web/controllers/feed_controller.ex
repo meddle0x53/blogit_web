@@ -1,4 +1,4 @@
-defmodule BlogitWeb.FeedController do
+defmodule BlogitWeb.Web.FeedController do
   @moduledoc """
   A controller module which provides RSS feed for the main stream of posts.
 

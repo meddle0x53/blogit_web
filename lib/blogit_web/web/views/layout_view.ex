@@ -1,4 +1,4 @@
-defmodule BlogitWeb.LayoutView do
+defmodule BlogitWeb.Web.LayoutView do
   use BlogitWeb.Web, :view
 
   def has_social_links?(%{social: nil}), do: false
@@ -52,12 +52,12 @@ defmodule BlogitWeb.LayoutView do
   end
 
   def current_locale do
-    Gettext.get_locale(BlogitWeb.Gettext)
+    Gettext.get_locale(BlogitWeb.Web.Gettext)
   end
 
   def language_annotations(conn) do
     Blogit.Settings.languages()
-    |> Enum.reject(fn l -> l == Gettext.get_locale(BlogitWeb.Gettext) end)
+    |> Enum.reject(fn l -> l == Gettext.get_locale(BlogitWeb.Web.Gettext) end)
     |> Enum.concat(["x-default"])
     |> Enum.map(fn l ->
       case l do
@@ -68,10 +68,10 @@ defmodule BlogitWeb.LayoutView do
   end
 
   def localized_url(conn, alt) do
-    path = ~r/\/#{Gettext.get_locale(BlogitWeb.Gettext)}(\/(?:[^?]+)?|$)/
+    path = ~r/\/#{Gettext.get_locale(BlogitWeb.Web.Gettext)}(\/(?:[^?]+)?|$)/
            |> Regex.replace(conn.request_path, "#{alt}\\1")
 
-    Phoenix.Router.Helpers.url(BlogitWeb.Router, conn) <> path
+    Phoenix.Router.Helpers.url(BlogitWeb.Web.Router, conn) <> path
   end
 
   def language_links(conn) do
@@ -79,12 +79,12 @@ defmodule BlogitWeb.LayoutView do
     |> Enum.map(fn lang ->
       link =
         if lang != Blogit.Settings.default_language() do
-          "/#{lang}" <> BlogitWeb.Router.Helpers.post_path(conn, :index)
+          "/#{lang}" <> BlogitWeb.Web.Router.Helpers.post_path(conn, :index)
         else
-          BlogitWeb.Router.Helpers.post_path(conn, :index)
+          BlogitWeb.Web.Router.Helpers.post_path(conn, :index)
         end
 
-      text = Gettext.gettext(BlogitWeb.Gettext, lang)
+      text = Gettext.gettext(BlogitWeb.Web.Gettext, lang)
       class = if lang == conn.assigns[:locale] do
         "active"
       else

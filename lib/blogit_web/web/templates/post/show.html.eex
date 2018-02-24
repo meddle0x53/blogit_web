@@ -3,7 +3,7 @@
 
 <script>
   var disqus_config = function () {
-    this.page.url = '<%= BlogitWeb.Router.Helpers.url(@conn) <> @conn.request_path %>';
+    this.page.url = '<%= BlogitWeb.Web.Router.Helpers.url(@conn) <> @conn.request_path %>';
     this.page.identifier = '<%= @post.name %>';
     this.page.title = '<%= @post.meta.title %>';
     this.language = '<%= @conn.assigns[:locale] %>';

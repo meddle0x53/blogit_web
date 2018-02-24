@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :blogit_web, BlogitWeb.Endpoint,
+config :blogit_web, BlogitWeb.Web.Endpoint,
   http: [port: 4001],
   server: false
 

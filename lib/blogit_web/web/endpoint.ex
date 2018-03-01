@@ -1,4 +1,4 @@
-defmodule BlogitWeb.Endpoint do
+defmodule BlogitWeb.Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :elixirlang
 
   plug Plug.Static,
@@ -44,5 +44,5 @@ defmodule BlogitWeb.Endpoint do
     key: "_blogit_web_key",
     signing_salt: "b3V3v7Jq"
 
-  plug BlogitWeb.Router
+  plug BlogitWeb.Web.Router
 end

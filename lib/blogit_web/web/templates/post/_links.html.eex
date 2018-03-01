@@ -1,4 +1,4 @@
-<%= if BlogitWeb.LayoutView.has_social_links?(@conn.assigns[:blog])  do %>
+<%= if BlogitWeb.Web.LayoutView.has_social_links?(@conn.assigns[:blog])  do %>
   <div class="well" id="social-links-well">
     <ul class="nav">
       <li class="nav-header post-title">

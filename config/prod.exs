@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :elixirlang, BlogitWeb.Endpoint,
+config :elixirlang, BlogitWeb.Web.Endpoint,
   http: [port: 8889],
   url: [host: "elixir-lang.bg", port: 443, scheme: "https"],
   cache_static_manifest: "priv/static/manifest.json",

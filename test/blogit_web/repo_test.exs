@@ -103,11 +103,11 @@ defmodule BlogitWeb.RepoTest do
     test ~S[if the filtering is done by category and the localized value] <>
     ~S[of `uncategorized` is passed, it passes the category criteria as ] <>
     ~S[`"category" => nil`] do
-      Gettext.put_locale(BlogitWeb.Gettext, "bg")
+      Gettext.put_locale(BlogitWeb.Web.Gettext, "bg")
       posts = BlogitWeb.Repo.all_by(
         Blogit.Models.Post.Meta, 2, 1, %{"category" => "некатегоризирано"}, "bg"
       )
-      Gettext.put_locale(BlogitWeb.Gettext, "en")
+      Gettext.put_locale(BlogitWeb.Web.Gettext, "en")
 
       assert posts |> Enum.map(&(&1.name)) == ~w[публикация2]
     end

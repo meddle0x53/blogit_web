@@ -6,7 +6,7 @@ defmodule BlogitWeb.Repo do
   It mirrors the Repo modules for Ecto powered Phoenix projects.
   """
 
-  require BlogitWeb.Gettext
+  require BlogitWeb.Web.Gettext
 
   @type locale :: String.t
 
@@ -79,7 +79,7 @@ defmodule BlogitWeb.Repo do
   ) :: [post_meta]
   def all_by(Blogit.Models.Post.Meta, per_page, page, params, locale) do
     params =
-      if BlogitWeb.Gettext.gettext("uncategorized") == params["category"] do
+      if BlogitWeb.Web.Gettext.gettext("uncategorized") == params["category"] do
         %{params | "category" => nil}
       else
         params

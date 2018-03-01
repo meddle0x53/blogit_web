@@ -1,4 +1,4 @@
-defmodule BlogitWeb.FeedView do
+defmodule BlogitWeb.Web.FeedView do
   use BlogitWeb.Web, :view
 
   def date_format(post) do

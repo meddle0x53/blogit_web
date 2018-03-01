@@ -1,4 +1,4 @@
-defmodule BlogitWeb.PostView do
+defmodule BlogitWeb.Web.PostView do
   use BlogitWeb.Web, :view
 
   def title(%{post: %{meta: %{title: title}}}), do: title
@@ -28,7 +28,7 @@ defmodule BlogitWeb.PostView do
   def post_image(_, %{meta: %{title_image_path: nil}}), do: ""
 
   def post_image(conn, %{meta: %{title_image_path: path}}) do
-    src = static_path(conn, BlogitWeb.LayoutView.blog_assets_path(path))
+    src = static_path(conn, BlogitWeb.Web.LayoutView.blog_assets_path(path))
     img = "<img src=#{src} style='width: 100%; max-height: 300px;' />"
 
     {:safe, img <> "<hr />"}
@@ -45,11 +45,11 @@ defmodule BlogitWeb.PostView do
   end
 
   def disqus_url(conn) do
-    disqus_host = Application.get_env(:elixirlang, BlogitWeb.Endpoint)[:disqus_host]
+    disqus_host = Application.get_env(:elixirlang, BlogitWeb.Web.Endpoint)[:disqus_host]
     if disqus_host do
       disqus_host
     else
-      url = Application.get_env(:elixirlang, BlogitWeb.Endpoint)[:url]
+      url = Application.get_env(:elixirlang, BlogitWeb.Web.Endpoint)[:url]
 
       if url && url[:host] do
         url[:host]
@@ -71,7 +71,7 @@ defmodule BlogitWeb.PostView do
   end
 
   defp format_date(conn, date) do
-    locale = BlogitWeb.LayoutView.real_locale(conn) |> String.to_atom
+    locale = BlogitWeb.Web.LayoutView.real_locale(conn) |> String.to_atom
     Calendar.Strftime.strftime!(date, "%A, %d %B %Y, %H:%M", locale)
   end
 end

@@ -1,12 +1,6 @@
 use Mix.Config
 
-# For development, we disable any cache and enable
-# debugging and code reloading.
-#
-# The watchers configuration can be used to run external
-# watchers to your application. For example, we use it
-# with brunch.io to recompile .js and .css sources.
-config :elixirlang, BlogitWeb.Endpoint,
+config :elixirlang, BlogitWeb.Web.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -17,13 +11,13 @@ config :elixirlang, BlogitWeb.Endpoint,
 
 
 # Watch static and templates for browser reloading.
-config :elixirlang, BlogitWeb.Endpoint,
+config :elixirlang, BlogitWeb.Web.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
-      ~r{web/views/.*(ex)$},
-      ~r{web/templates/.*(eex)$}
+      ~r{lib/blogit_web/web/views/.*(ex)$},
+      ~r{lib/blogit_web/web/templates/.*(eex)$}
     ]
   ]
 

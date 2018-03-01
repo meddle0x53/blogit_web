@@ -64,7 +64,7 @@ msgstr "Posts In Bulgarian"
 
 #: web/templates/layout/post.html.eex:28
 msgid "Languages"
-msgstr ""
+msgstr "Streams"
 
 #: web/templates/layout/post.html.eex:70 web/templates/post/sidebar.html.eex:33
 msgid "Follow me on Github"

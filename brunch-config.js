@@ -65,7 +65,7 @@ exports.config = {
 
   npm: {
     enabled: true,
-    whitelist: ["phoenix", "phoenix_html", "turbolinks"],
+    whitelist: ["phoenix", "phoenix_html"],
     globals: {
       jQuery: 'jquery',
       $: 'jquery'

@@ -27,7 +27,7 @@
         <%= if Enum.count(Blogit.Settings.languages()) > 1 do %>
           <div class="nav-segment"><%= gettext "Languages" %></div>
           <%= for {link, text, class} <- language_links(@conn) do %>
-            <li class="<%= class %>"><a href="<%= link %>" data-turbolinks="false"><%= text %></a></li>
+            <li class="<%= class %>"><a href="<%= link %>"><%= text %></a></li>
           <% end %>
         <% end %>
 
@@ -79,7 +79,7 @@
     </div>
 
     <div class="container">
-      <header class="header" id="blog-header" data-turbolinks-permanent>
+      <header class="header" id="blog-header">
         <a class="title-link" href="<%= post_path(@conn, :index)%>">
           <%= blog_logo(@conn, assigns) %>
           <div class="titles">
@@ -96,7 +96,7 @@
           <hr/ >
           <ul class="nav nav-pills">
             <%= for {link, text, class} <- language_links(@conn) do %>
-              <li class="<%= class %>"><a href="<%= link %>" data-turbolinks="false"><%= text %></a></li>
+              <li class="<%= class %>"><a href="<%= link %>"><%= text %></a></li>
             <% end %>
           </ul>
           <hr/ >
@@ -108,7 +108,7 @@
           <div class="col-lg-9">
             <%= render @view_module, @view_template, assigns %>
           </div>
-           <div class="col-md-3 sidebar" id="sidebar-component" data-turbolinks-permanent>
+           <div class="col-md-3 sidebar" id="sidebar-component">
              <%= render @view_module, "sidebar.html", assigns %>
            </div>
         </div>

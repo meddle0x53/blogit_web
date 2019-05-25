@@ -59,6 +59,12 @@ defmodule BlogitWeb.Web.PostView do
     end
   end
 
+  def render_content(%{html: content}) do
+    content
+    |> String.replace("img", "img style='width: 100%;'") # Hack for images, to big fixed on Blogit level.
+    |> raw()
+  end
+
   defp category_span(conn, category) do
     category_link = """
       <a href="#{post_path(conn, :index, category: category)}">#{category}</a>

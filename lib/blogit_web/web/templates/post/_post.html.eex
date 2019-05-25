@@ -1,4 +1,4 @@
-<div class="post-row" id="post-<%= @post.name %>" data-turbolinks-permanent>
+<div class="post-row" id="post-<%= @post.name %>">
   <article class="post">
     <h2 class="post-title-container">
       <a class="post-title-link" href="<%= post_path(@conn, :show, @post.name) %>">
@@ -16,7 +16,7 @@
     </div>
     <hr class="after-post-date" />
     <%= post_image(@conn, @post) %>
-    <%= raw @post.html %>
+    <%= render_content(@post) %>
     <hr class="post-footer-divider" />
     <div class="post-footer">
       <%= render_category(@conn, @post)%>

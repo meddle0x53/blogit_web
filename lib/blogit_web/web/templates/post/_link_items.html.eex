@@ -1,7 +1,7 @@
 <%= if @conn.assigns[:blog].social && @conn.assigns[:blog].social["rss"] do %>
   <li class="rss-subscribe-link">
     <span class="btn-rss"></span>
-    <%= link(gettext("RSS - posts"), to: feed_path(@conn, :index), data: [turbolinks: false]) %>
+    <%= link(gettext("RSS - posts"), to: feed_path(@conn, :index)) %>
   </li>
 <% end %>
 

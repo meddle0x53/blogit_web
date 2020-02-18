@@ -17,6 +17,9 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+# Use Jason for JSON parsing in Phoenix
+config :phoenix, :json_library, Jason
+
 config :blogit_web, BlogitWeb.Web.Gettext, default_locale: "en"
 config :calendar, :translation_module, CalendarTranslations.Translations
 

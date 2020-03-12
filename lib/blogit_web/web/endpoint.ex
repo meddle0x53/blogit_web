@@ -6,6 +6,7 @@ defmodule BlogitWeb.Web.Endpoint do
     from: :blogit_web,
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
+  )
 
   plug Plug.Static,
     at: "custom/",

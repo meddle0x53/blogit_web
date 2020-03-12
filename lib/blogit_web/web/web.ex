@@ -22,7 +22,8 @@ defmodule BlogitWeb.Web do
 
       alias BlogitWeb.Repo
 
-      import BlogitWeb.Web.Router.Helpers, only: [static_path: 2, static_url: 2]
+      # import BlogitWeb.Web.Router.Helpers, only: [static_path: 2, static_url: 2]
+      alias BlogitWeb.Web.Router.Helpers, as: Routes
       import BlogitWeb.Web.Gettext
 
       use BlogitWeb.Helpers
@@ -31,8 +32,9 @@ defmodule BlogitWeb.Web do
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/blogit_web/web/templates",
-                        namespace: BlogitWeb.Web
+      use Phoenix.View,
+        root: "lib/blogit_web/web/templates",
+        namespace: BlogitWeb.Web
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
@@ -40,7 +42,8 @@ defmodule BlogitWeb.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import BlogitWeb.Web.Router.Helpers, only: [static_path: 2, static_url: 2]
+      # import BlogitWeb.Web.Router.Helpers, only: [static_path: 2, static_url: 2]
+      alias BlogitWeb.Web.Router.Helpers, as: Routes
       import BlogitWeb.Web.ErrorHelpers
       import BlogitWeb.Web.Gettext
 

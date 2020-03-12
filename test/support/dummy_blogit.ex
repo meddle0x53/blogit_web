@@ -2,38 +2,57 @@ defmodule DummyBlogit do
   @meta %{
     "en" => [
       %Blogit.Models.Post.Meta{
-        name: "post1", author: "meddle", category: "Test",
+        name: "post1",
+        author: "meddle",
+        category: "Test",
         preview: "<h1>First Bost</h1>",
-        created_at: ~N[2017-05-21 08:46:50], pinned: false,
+        created_at: ~N[2017-05-21 08:46:50],
+        pinned: false,
         title: "Post One"
       },
       %Blogit.Models.Post.Meta{
-        name: "post2", author: "slavi", preview: "<h1>Second Bost</h1>",
-        created_at: ~N[2017-07-25 18:36:33], pinned: true,
-        title: "Post Two", tags: "stuff"
+        name: "post2",
+        author: "slavi",
+        preview: "<h1>Second Bost</h1>",
+        created_at: ~N[2017-07-25 18:36:33],
+        pinned: true,
+        title: "Post Two",
+        tags: "stuff"
       },
       %Blogit.Models.Post.Meta{
-        name: "post3", author: "valo",
+        name: "post3",
+        author: "valo",
         preview: ~s[<h1>Third Bost</h1><a href="/posts/post1">A link</a>],
-        created_at: ~N[2017-04-26 16:26:26], pinned: false,
-        title: "Post Three", tags: []
+        created_at: ~N[2017-04-26 16:26:26],
+        pinned: false,
+        title: "Post Three",
+        tags: []
       },
       %Blogit.Models.Post.Meta{
-        name: "post4", author: "andi", preview: "<h1>Fourth Bost</h1>",
-        created_at: ~N[2017-03-13 21:55:26], pinned: false,
-        title: "Post Four", year: 2017, month: 3
+        name: "post4",
+        author: "andi",
+        preview: "<h1>Fourth Bost</h1>",
+        created_at: ~N[2017-03-13 21:55:26],
+        pinned: false,
+        title: "Post Four",
+        year: 2017,
+        month: 3
       }
     ],
     "bg" => [
       %Blogit.Models.Post.Meta{
-        name: "публикация1", category: "Test",
+        name: "публикация1",
+        category: "Test",
         preview: "<h1>Първа Бубликация</h1>",
-        created_at: ~N[2017-05-21 08:46:50], pinned: false, tags: []
+        created_at: ~N[2017-05-21 08:46:50],
+        pinned: false,
+        tags: []
       },
       %Blogit.Models.Post.Meta{
         name: "публикация2",
         preview: ~s(<h1>Втора Бубликация</h1><a href="/bg/posts/so">A link</a>),
-        created_at: ~N[2017-06-15 15:18:39], pinned: false,
+        created_at: ~N[2017-06-15 15:18:39],
+        pinned: false
       }
     ]
   }
@@ -44,7 +63,7 @@ defmodule DummyBlogit do
     },
     "bg" => %Blogit.Models.Configuration{
       title: "Моят блог"
-    },
+    }
   }
 
   def list_posts(options \\ []) do
@@ -52,7 +71,7 @@ defmodule DummyBlogit do
     size = Keyword.get(options, :size, 5)
     language = Keyword.get(options, :language, "en")
 
-    (@meta[language] || []) |> Enum.drop(from)|> Enum.take(size)
+    (@meta[language] || []) |> Enum.drop(from) |> Enum.take(size)
   end
 
   def configuration(options \\ []) do
@@ -69,7 +88,10 @@ defmodule DummyBlogit do
       {
         :ok,
         %Blogit.Models.Post{
-          meta: post, name: post.name, html: post.preview, raw: post.preview
+          meta: post,
+          name: post.name,
+          html: post.preview,
+          raw: post.preview
         }
       }
     end
@@ -98,7 +120,9 @@ defmodule DummyBlogit do
         params
       end
 
-    options |> list_posts() |> Enum.filter(fn post ->
+    options
+    |> list_posts()
+    |> Enum.filter(fn post ->
       Enum.all?(params, fn {key, val} ->
         Map.fetch!(post, String.to_atom(key)) == val
       end)
@@ -107,8 +131,8 @@ defmodule DummyBlogit do
 
   def list_pinned(options \\ []) do
     list_posts(options)
-    |> Enum.filter(&(&1.pinned))
-    |> Enum.map(&({&1.name, &1.title}))
+    |> Enum.filter(& &1.pinned)
+    |> Enum.map(&{&1.name, &1.title})
   end
 
   def posts_by_dates(options \\ []) do

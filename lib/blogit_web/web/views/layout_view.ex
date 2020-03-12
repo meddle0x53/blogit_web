@@ -2,9 +2,10 @@ defmodule BlogitWeb.Web.LayoutView do
   use BlogitWeb.Web, :view
 
   def has_social_links?(%{social: nil}), do: false
+
   def has_social_links?(%{social: social}) do
     social["rss"] || social["stars_for_blogit"] || social["facebook"] ||
-    social["github"] || social["twitter"]
+      social["github"] || social["twitter"]
   end
 
   def blog_assets_folder do
@@ -19,19 +20,21 @@ defmodule BlogitWeb.Web.LayoutView do
     styles = """
     <style>
       header.header {
-        background: url('#{static_path(conn, blog_assets_path(path))}');
+        background: url('#{Routes.static_url(conn, blog_assets_path(path))}');
         background-position: right 10px top;
         min-height: 300px;
         background-repeat: no-repeat;
       }
     </style>
     """
+
     {:safe, styles}
   end
 
   def blog_logo(_, %{blog: %{logo_path: nil}}), do: ""
+
   def blog_logo(conn, %{blog: %{logo_path: path}}) do
-    src = static_path(conn, blog_assets_path(path))
+    src = Routes.static_url(conn, blog_assets_path(path))
 
     html = """
     <div class="blog-logo">
@@ -45,7 +48,7 @@ defmodule BlogitWeb.Web.LayoutView do
   def blog_custom_styles(_, %{blog: %{styles_path: nil}}), do: ""
 
   def blog_custom_styles(conn, %{blog: %{styles_path: path}}) do
-    path = static_path(conn, blog_assets_path(path))
+    path = Routes.static_url(conn, blog_assets_path(path))
     styles = "<link rel='stylesheet' href='#{path}'>"
 
     {:safe, styles}
@@ -68,8 +71,9 @@ defmodule BlogitWeb.Web.LayoutView do
   end
 
   def localized_url(conn, alt) do
-    path = ~r/\/#{Gettext.get_locale(BlogitWeb.Web.Gettext)}(\/(?:[^?]+)?|$)/
-           |> Regex.replace(conn.request_path, "#{alt}\\1")
+    path =
+      ~r/\/#{Gettext.get_locale(BlogitWeb.Web.Gettext)}(\/(?:[^?]+)?|$)/
+      |> Regex.replace(conn.request_path, "#{alt}\\1")
 
     Phoenix.Router.Helpers.url(BlogitWeb.Web.Router, conn) <> path
   end
@@ -85,11 +89,14 @@ defmodule BlogitWeb.Web.LayoutView do
         end
 
       text = Gettext.gettext(BlogitWeb.Web.Gettext, lang)
-      class = if lang == conn.assigns[:locale] do
-        "active"
-      else
-        "inactive"
-      end
+
+      class =
+        if lang == conn.assigns[:locale] do
+          "active"
+        else
+          "inactive"
+        end
+
       {link, text, class}
     end)
   end

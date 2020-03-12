@@ -40,5 +40,6 @@ defmodule BlogitWeb.Plugs.DefaultAssigns do
   defp assign_value(conn, k, v) when is_function(v) do
     assign(conn, k, v.(conn))
   end
+
   defp assign_value(conn, k, v), do: assign(conn, k, v)
 end

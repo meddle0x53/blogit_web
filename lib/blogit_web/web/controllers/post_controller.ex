@@ -13,11 +13,11 @@ defmodule BlogitWeb.Web.PostController do
   """
   use BlogitWeb.Web, :controller
 
-  plug :put_layout, "post.html"
-  plug BlogitWeb.Plugs.DefaultAssigns, blog: &__MODULE__.blog/1
-  plug :last_posts
-  plug :pinned_posts
-  plug :posts_by_dates
+  plug(:put_layout, "post.html")
+  plug(BlogitWeb.Plugs.DefaultAssigns, blog: &__MODULE__.blog/1)
+  plug(:last_posts)
+  plug(:pinned_posts)
+  plug(:posts_by_dates)
 
   @doc """
   The index action handles two types of requests.
@@ -83,7 +83,7 @@ defmodule BlogitWeb.Web.PostController do
   # Private #
   ###########
 
-  defp render_posts(conn, posts), do: render conn, "index.html", posts: posts
+  defp render_posts(conn, posts), do: render(conn, "index.html", posts: posts)
 
   defp render_post(conn, {:error, _}) do
     conn
@@ -93,7 +93,9 @@ defmodule BlogitWeb.Web.PostController do
 
   defp render_post(conn, {:ok, post}) do
     render(
-      conn, "show.html", post: post
+      conn,
+      "show.html",
+      post: post
     )
   end
 

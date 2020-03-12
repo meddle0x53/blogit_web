@@ -14,8 +14,9 @@ defmodule BlogitWeb.FeedControllerTest do
     item_link3 = "http://localhost:4001/posts/post3"
     item_link4 = "http://localhost:4001/posts/post4"
 
-    item_cdata3 = ~s(<h1>Third Bost</h1><a href="#{item_link1}">A link</a>) <>
-      "<a href=#{item_link3}>[...]</a>"
+    item_cdata3 =
+      ~s(<h1>Third Bost</h1><a href="#{item_link1}">A link</a>) <>
+        "<a href=#{item_link3}>[...]</a>"
 
     rss = """
     <?xml version="1.0" encoding="UTF-8"?>
@@ -76,34 +77,40 @@ defmodule BlogitWeb.FeedControllerTest do
   end
 
   setup_all do
-    Application.put_env(:blogit_web, :backend_implementation, DummyBlogit); :ok
+    Application.put_env(:blogit_web, :backend_implementation, DummyBlogit)
+    :ok
   end
 
   test "GET /", %{conn: conn} do
-    conn = get conn, "/feed"
+    conn = get(conn, "/feed")
 
     assert_default_locale_rss(conn)
   end
 
   test "GET / with locale", %{conn: conn} do
-    conn = get conn, "/en/feed"
+    conn = get(conn, "/en/feed")
 
     assert_default_locale_rss(conn)
   end
 
   test "GET / with alternative locale", %{conn: conn} do
-    conn = get conn, "/bg/feed"
+    conn = get(conn, "/bg/feed")
 
-    item_link1 = "http://localhost:4001/bg/posts/" <>
-      "%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F1"
-    item_link2 = "http://localhost:4001/bg/posts/" <>
-      "%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F2"
+    item_link1 =
+      "http://localhost:4001/bg/posts/" <>
+        "%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F1"
+
+    item_link2 =
+      "http://localhost:4001/bg/posts/" <>
+        "%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F2"
+
     title1 = "Първа Бубликация"
     title2 = "Втора Бубликация"
 
-    item_cdata2 = "<h1>#{title2}</h1>" <>
-      ~s(<a href="http://localhost:4001/bg/posts/so">A link</a>) <>
-      "<a href=#{item_link2}>[...]</a>"
+    item_cdata2 =
+      "<h1>#{title2}</h1>" <>
+        ~s(<a href="http://localhost:4001/bg/posts/so">A link</a>) <>
+        "<a href=#{item_link2}>[...]</a>"
 
     rss = """
     <?xml version="1.0" encoding="UTF-8"?>

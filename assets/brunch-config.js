@@ -34,32 +34,34 @@ exports.config = {
     // This option sets where we should place non-css and non-js assets in.
     // By default, we set this to "/web/static/assets". Files in this directory
     // will be copied to `paths.public`, which is "priv/static" by default.
-    assets: /^(lib\/blogit_web\/web\/static\/assets)/
+    assets: /^(static)/
   },
 
   // Phoenix paths configuration
   paths: {
     // Dependencies and current project directories to watch
     watched: [
-      "lib/blogit_web/web/static",
-      "lib_blogit_web/test/static"
+      "static",
+      "css",
+      "js",
+      "vendor"
     ],
 
     // Where to compile files to
-    public: "priv/static"
+    public: "../priv/static"
   },
 
   // Configure your plugins
   plugins: {
     babel: {
       // Do not use ES6 compiler in vendor code
-      ignore: [/lib\/blogit_web\/web\/static\/vendor/]
+      ignore: [/vendor/]
     }
   },
 
   modules: {
     autoRequire: {
-      "js/app.js": ["lib/blogit_web/web/static/js/app"]
+      "js/app.js": ["js/app"]
     }
   },
 

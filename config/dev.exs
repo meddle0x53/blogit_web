@@ -13,7 +13,7 @@ config :blogit_web, BlogitWeb.Web.Endpoint,
   check_origin: false,
   disqus_host: "themeddle-com",
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
-                    cd: Path.expand("../", __DIR__)]]
+                    cd: Path.expand("../assets", __DIR__)]]
 
 
 # Watch static and templates for browser reloading.

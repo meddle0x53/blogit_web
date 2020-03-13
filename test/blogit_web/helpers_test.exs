@@ -9,8 +9,9 @@ defmodule BlogitWeb.HelpersTest do
 
   describe "localized_path" do
     test "generates the same path as `BlogitWeb.Web.Router.Helpers.post_path` " <>
-    "if calling `BlogitWeb.Helpers.current_locale()` returns " <>
-    "the default locale", %{conn: conn} do
+           "if calling `BlogitWeb.Helpers.current_locale()` returns " <>
+           "the default locale",
+         %{conn: conn} do
       Gettext.put_locale(BlogitWeb.Web.Gettext, Blogit.Settings.default_language())
 
       path = BlogitWeb.Helpers.localized_path(conn, "post", :index)
@@ -19,8 +20,9 @@ defmodule BlogitWeb.HelpersTest do
     end
 
     test "generates the a path prefixed by `/<current-locale>` " <>
-    "if calling `BlogitWeb.Helpers.current_locale()` doesn't return " <>
-    "the default locale", %{conn: conn} do
+           "if calling `BlogitWeb.Helpers.current_locale()` doesn't return " <>
+           "the default locale",
+         %{conn: conn} do
       assert Blogit.Settings.default_language() != "pl"
       Gettext.put_locale(BlogitWeb.Web.Gettext, "pl")
 
@@ -41,7 +43,8 @@ defmodule BlogitWeb.HelpersTest do
     end
 
     test "modifies the `*_path` functions in the using module to use the " <>
-    "current locale", %{conn: conn} do
+           "current locale",
+         %{conn: conn} do
       assert Blogit.Settings.default_language() != "pl"
       Gettext.put_locale(BlogitWeb.Web.Gettext, "pl")
 
@@ -49,7 +52,8 @@ defmodule BlogitWeb.HelpersTest do
     end
 
     test "modifies the `*_url` functions in the using module to use the " <>
-    "current locale", %{conn: conn} do
+           "current locale",
+         %{conn: conn} do
       conn = with_phoexni_endpoint(conn)
 
       assert Blogit.Settings.default_language() != "pl"
@@ -59,14 +63,16 @@ defmodule BlogitWeb.HelpersTest do
     end
 
     test "the `*_path` functions are not modified if the current locale" <>
-    "is the default Blogit language", %{conn: conn} do
+           "is the default Blogit language",
+         %{conn: conn} do
       Gettext.put_locale(BlogitWeb.Web.Gettext, Blogit.Settings.default_language())
 
       assert TestMod.post_path(conn, :index) == "/posts"
     end
 
     test "the `*_url` functions are not modified if the current locale" <>
-    "is the default Blogit language", %{conn: conn} do
+           "is the default Blogit language",
+         %{conn: conn} do
       conn = with_phoexni_endpoint(conn)
       Gettext.put_locale(BlogitWeb.Web.Gettext, Blogit.Settings.default_language())
 
@@ -74,7 +80,7 @@ defmodule BlogitWeb.HelpersTest do
     end
 
     test "doesn't modify `static_path` with the current locale",
-    %{conn: conn} do
+         %{conn: conn} do
       conn = with_phoexni_endpoint(conn)
 
       assert Blogit.Settings.default_language() != "pl"
@@ -90,7 +96,7 @@ defmodule BlogitWeb.HelpersTest do
       Gettext.put_locale(BlogitWeb.Web.Gettext, "pl")
 
       assert TestMod.try_static_url(conn, "/images") ==
-        "http://localhost:4001/images"
+               "http://localhost:4001/images"
     end
   end
 end

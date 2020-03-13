@@ -20,10 +20,19 @@ import "phoenix_html"
 
 // import socket from "./socket"
 
+
+// import * from 'jquery-ujs'
 //import { Posts } from "./posts"
 //Posts.setup();
 
+
+
 import { MultyCode } from "./multicode"
+
+
+
+
+
 
 
 var Markit = {

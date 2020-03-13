@@ -13,7 +13,7 @@ config :blogit_web, BlogitWeb.Web.Endpoint,
   check_origin: false,
   disqus_host: "themeddle-com",
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
-                    cd: Path.expand("../", __DIR__)]]
+                    cd: Path.expand("../assets", __DIR__)]]
 
 
 # Watch static and templates for browser reloading.
@@ -34,5 +34,5 @@ config :logger, :error_log, path: "log/error.log", level: :error
 config :phoenix, :stacktrace_depth, 20
 
 config :blogit,
-  repository_url: "https://github.com/meddle0x53/blogit_sample",
+  repository_url: "https://github.com/9to1url/blogit_sample.git",
   polling: false, max_lines_in_preview: 5, languages: ~w(en bg)

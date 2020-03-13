@@ -30,7 +30,7 @@ defmodule BlogitWeb.Helpers do
       iex> BlogitWeb.Helpers.current_locale()
       "es"
   """
-  @spec current_locale() :: String.t
+  @spec current_locale() :: String.t()
   def current_locale do
     Gettext.get_locale(BlogitWeb.Web.Gettext)
   end
@@ -77,8 +77,8 @@ defmodule BlogitWeb.Helpers do
     funcs =
       :functions
       |> BlogitWeb.Web.Router.Helpers.module_info()
-      |> Enum.filter(fn {fname, _} ->  fname != :static_path end)
-      |> Enum.filter(fn {fname, _} ->  fname != :static_url end)
+      |> Enum.filter(fn {fname, _} -> fname != :static_path end)
+      |> Enum.filter(fn {fname, _} -> fname != :static_url end)
       |> Enum.filter(fn {fname, _} ->
         name = to_string(fname)
         String.ends_with?(name, "path") || String.ends_with?(name, "url")
@@ -87,18 +87,20 @@ defmodule BlogitWeb.Helpers do
     funcs
     |> Enum.map(fn {fname, arity} ->
       args = create_args(__MODULE__, arity)
+
       quote do
         def unquote(fname)(unquote_splicing(args)) do
           link = apply(BlogitWeb.Web.Router.Helpers, unquote(fname), unquote(args))
           locale = BlogitWeb.Helpers.current_locale()
 
           if locale != Blogit.Settings.default_language() do
-            path_func = String.to_atom(
-              String.replace(unquote(to_string(fname)), "url", "path")
-            )
+            path_func = String.to_atom(String.replace(unquote(to_string(fname)), "url", "path"))
             path = apply(BlogitWeb.Web.Router.Helpers, path_func, unquote(args))
+
             String.replace(
-              link, path, "/#{locale}#{path}"
+              link,
+              path,
+              "/#{locale}#{path}"
             )
           else
             link
@@ -113,7 +115,8 @@ defmodule BlogitWeb.Helpers do
   ###########
 
   defp create_args(_, 0), do: []
+
   defp create_args(fn_mdl, arg_cnt) do
-    Enum.map(1..arg_cnt, &(Macro.var (:"arg#{&1}"), fn_mdl))
+    Enum.map(1..arg_cnt, &Macro.var(:"arg#{&1}", fn_mdl))
   end
 end

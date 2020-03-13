@@ -12,7 +12,7 @@
 
     <title><%= BlogitWeb.Web.PostView.title(assigns) %></title>
 
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="<%= Routes.static_url(@conn, "/css/app.css") %>">
     <link rel="alternate" type="application/rss+xml" title="<%= assigns[:blog].title %>" href="<%= feed_url(@conn, :index) %>">
 
     <%= blog_image_styles(@conn, assigns) %>
@@ -114,7 +114,7 @@
         </div>
       </main>
     </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script src="<%= Routes.static_url(@conn, "/js/app.js") %>"></script>
     <script>
       $(document).ready(function() { hljs.initHighlighting(); });
     </script>

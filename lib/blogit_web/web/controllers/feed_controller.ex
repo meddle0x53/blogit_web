@@ -7,8 +7,8 @@ defmodule BlogitWeb.Web.FeedController do
   """
   use BlogitWeb.Web, :controller
 
-  plug BlogitWeb.Plugs.Locales
-  plug BlogitWeb.Plugs.DefaultAssigns, blog: &__MODULE__.blog/1
+  plug(BlogitWeb.Plugs.Locales)
+  plug(BlogitWeb.Plugs.DefaultAssigns, blog: &__MODULE__.blog/1)
 
   @doc """
   The only action of the controller. The index action lists all the available
@@ -24,10 +24,12 @@ defmodule BlogitWeb.Web.FeedController do
     posts_url = post_url(conn, :index)
     posts_path = post_path(conn, :index)
 
-    posts = posts |> Enum.map(fn post ->
-      preview = post.preview |> String.replace(posts_path, posts_url)
-      Map.put(post, :preview, preview)
-    end)
+    posts =
+      posts
+      |> Enum.map(fn post ->
+        preview = post.preview |> String.replace(posts_path, posts_url)
+        Map.put(post, :preview, preview)
+      end)
 
     conn
     |> put_layout(:none)

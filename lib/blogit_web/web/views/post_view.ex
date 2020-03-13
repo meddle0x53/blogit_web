@@ -10,14 +10,16 @@ defmodule BlogitWeb.Web.PostView do
   end
 
   def render_category(
-    conn, %{meta: %{category: category}}
-  ) when is_nil(category) do
-    uncategorized = gettext "uncategorized"
+        conn,
+        %{meta: %{category: category}}
+      )
+      when is_nil(category) do
+    uncategorized = gettext("uncategorized")
     render_category_text(category_span(conn, uncategorized))
   end
 
   def render_category(conn, %{meta: %{category: category}}) do
-    categorized = gettext "Categorized in "
+    categorized = gettext("Categorized in ")
     render_category_text(categorized <> category_span(conn, category))
   end
 
@@ -28,7 +30,7 @@ defmodule BlogitWeb.Web.PostView do
   def post_image(_, %{meta: %{title_image_path: nil}}), do: ""
 
   def post_image(conn, %{meta: %{title_image_path: path}}) do
-    src = static_path(conn, BlogitWeb.Web.LayoutView.blog_assets_path(path))
+    src = Routes.static_url(conn, BlogitWeb.Web.LayoutView.blog_assets_path(path))
     img = "<img src=#{src} style='width: 100%; max-height: 300px;' />"
 
     {:safe, img <> "<hr />"}
@@ -36,8 +38,9 @@ defmodule BlogitWeb.Web.PostView do
 
   def render_tags(%{tags: tags}), do: render_tags(%{meta: %{tags: tags}})
   def render_tags(%{meta: %{tags: []}}), do: ""
+
   def render_tags(%{meta: %{tags: tags}}) do
-    description = gettext "Tagged in"
+    description = gettext("Tagged in")
     tag_names = tags |> Enum.join(", ")
     tags_span = "<span class='post-tag-names'>#{tag_names}</span>"
 
@@ -46,6 +49,7 @@ defmodule BlogitWeb.Web.PostView do
 
   def disqus_url(conn) do
     disqus_host = Application.get_env(:blogit_web, BlogitWeb.Web.Endpoint)[:disqus_host]
+
     if disqus_host do
       disqus_host
     else
@@ -63,6 +67,7 @@ defmodule BlogitWeb.Web.PostView do
     category_link = """
       <a href="#{post_path(conn, :index, category: category)}">#{category}</a>
     """
+
     "<span class=post-category-name>#{category_link}</span>"
   end
 
@@ -71,7 +76,7 @@ defmodule BlogitWeb.Web.PostView do
   end
 
   defp format_date(conn, date) do
-    locale = BlogitWeb.Web.LayoutView.real_locale(conn) |> String.to_atom
+    locale = BlogitWeb.Web.LayoutView.real_locale(conn) |> String.to_atom()
     Calendar.Strftime.strftime!(date, "%A, %d %B %Y, %H:%M", locale)
   end
 end

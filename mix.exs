@@ -2,15 +2,17 @@ defmodule BlogitWeb.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :blogit_web,
-     version: "0.14.0",
-     elixir: "~> 1.5",
-     elixirc_paths: elixirc_paths(Mix.env),
-     compilers: [:phoenix, :gettext] ++ Mix.compilers,
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     aliases: aliases(),
-     deps: deps()]
+    [
+      app: :blogit_web,
+      version: "0.14.0",
+      elixir: "~> 1.5",
+      elixirc_paths: elixirc_paths(Mix.env()),
+      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      aliases: aliases(),
+      deps: deps()
+    ]
   end
 
   def application do
@@ -41,7 +43,9 @@ defmodule BlogitWeb.Mixfile do
      {:edeliver, "~> 1.4"},
      {:distillery, "~> 1.1"},
      {:logger_file_backend, "0.0.9"},
-     {:blogit, "~> 1.2"}]
+
+     {:blogit, github: "9to1url/blogit"}
+    ]
   end
 
   defp aliases do

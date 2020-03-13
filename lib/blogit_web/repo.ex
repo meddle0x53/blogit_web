@@ -8,11 +8,11 @@ defmodule BlogitWeb.Repo do
 
   require BlogitWeb.Web.Gettext
 
-  @type locale :: String.t
+  @type locale :: String.t()
 
-  @type post :: Blogit.Models.Post.t
-  @type post_meta :: Blogit.Models.Post.Meta.t
-  @type configuration :: Blogit.Models.Configuration.t
+  @type post :: Blogit.Models.Post.t()
+  @type post_meta :: Blogit.Models.Post.Meta.t()
+  @type configuration :: Blogit.Models.Configuration.t()
 
   @doc """
   Retrieves all the posts for the given `locale` from the `Blogit`
@@ -21,7 +21,7 @@ defmodule BlogitWeb.Repo do
   The `per_page` and `page` parameters are used for paging.
   """
   @spec all(Blogit.Models.Post.Meta, pos_integer, pos_integer, locale) ::
-  [post_meta]
+          [post_meta]
   def all(Blogit.Models.Post.Meta, per_page, page, locale) do
     all_posts(per_page, page, locale)
   end
@@ -73,10 +73,14 @@ defmodule BlogitWeb.Repo do
 
   The `per_page` and `page` arguments are used for paging.
   """
-  @type filters :: %{String.t => Blogit.Logic.Search.search_value}
+  @type filters :: %{String.t() => Blogit.Logic.Search.search_value()}
   @spec all_by(
-    Blogit.Models.Post.Meta, pos_integer, pos_integer, filters, locale
-  ) :: [post_meta]
+          Blogit.Models.Post.Meta,
+          pos_integer,
+          pos_integer,
+          filters,
+          locale
+        ) :: [post_meta]
   def all_by(Blogit.Models.Post.Meta, per_page, page, params, locale) do
     params =
       if BlogitWeb.Web.Gettext.gettext("uncategorized") == params["category"] do
@@ -85,16 +89,20 @@ defmodule BlogitWeb.Repo do
         params
       end
 
-    is_search =
-      Map.has_key?(params, "search") && Map.has_key?(params["search"], "q")
-    params = if is_search do
-               Map.merge(params, %{"q" => params["search"]["q"]})
-             else
-               params
-             end
+    is_search = Map.has_key?(params, "search") && Map.has_key?(params["search"], "q")
+
+    params =
+      if is_search do
+        Map.merge(params, %{"q" => params["search"]["q"]})
+      else
+        params
+      end
 
     backend().filter_posts(
-      params, from: from(page, per_page), size: per_page, language: locale
+      params,
+      from: from(page, per_page),
+      size: per_page,
+      language: locale
     )
   end
 
@@ -107,7 +115,7 @@ defmodule BlogitWeb.Repo do
   Pinned posts are posts which have specified `pinned: true` in their meta
   data.
   """
-  @spec list_pinned_posts(String.t) :: [{String.t, String.t}]
+  @spec list_pinned_posts(String.t()) :: [{String.t(), String.t()}]
   def list_pinned_posts(locale), do: backend().list_pinned(language: locale)
 
   @doc """
@@ -121,7 +129,7 @@ defmodule BlogitWeb.Repo do
   The tuples are sorted from the newest to the oldest, using the years
   and the months.
   """
-  @spec posts_by_dates(String.t) :: Blogit.Models.Post.year_month_count_result
+  @spec posts_by_dates(String.t()) :: Blogit.Models.Post.year_month_count_result()
   def posts_by_dates(locale), do: backend().posts_by_dates(language: locale)
 
   ###########
@@ -130,7 +138,9 @@ defmodule BlogitWeb.Repo do
 
   defp all_posts(per_page, page, locale) do
     backend().list_posts(
-      from: from(page, per_page), size: per_page, language: locale
+      from: from(page, per_page),
+      size: per_page,
+      language: locale
     )
   end
 

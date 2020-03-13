@@ -4,7 +4,7 @@ defmodule BlogitWeb.Mixfile do
   def project do
     [
       app: :blogit_web,
-      version: "0.14.0",
+      version: "0.15.0",
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
@@ -18,7 +18,7 @@ defmodule BlogitWeb.Mixfile do
   def application do
     [mod: {BlogitWeb, []},
      applications: [:blogit, :calendar, :phoenix, :phoenix_pubsub,
-      :phoenix_html, :plug_cowboy,:plug, :poison, :logger, :gettext, :edeliver],
+      :phoenix_html, :plug_cowboy,:plug, :logger, :gettext, :edeliver],
     included_applications: [
       :calendar_translations, :earmark, :git_cli, :logger_file_backend
     ]]
@@ -34,7 +34,6 @@ defmodule BlogitWeb.Mixfile do
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
-     {:poison, "~> 3.1.0"},
      {:jason, "~> 1.0"},
      {:plug_cowboy, "~> 2.0"},
      {:plug, "~> 1.7"},
@@ -43,8 +42,7 @@ defmodule BlogitWeb.Mixfile do
      {:edeliver, "~> 1.4"},
      {:distillery, "~> 1.1"},
      {:logger_file_backend, "0.0.9"},
-
-     {:blogit, github: "9to1url/blogit"}
+     {:blogit, "~> 1.2"}
     ]
   end
 

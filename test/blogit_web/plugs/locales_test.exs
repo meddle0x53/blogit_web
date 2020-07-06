@@ -1,5 +1,5 @@
 defmodule BlogitWeb.Plugs.LocalesTest do
-  use BlogitWeb.ConnCase
+  use BlogitWeb.Web.ConnCase
 
   test "assigns the locale present in the params to the connection if such " <>
   "exists and the locale is in Blogit.Settings.languages()", %{conn: conn} do
@@ -29,6 +29,6 @@ defmodule BlogitWeb.Plugs.LocalesTest do
     conn = update_in(conn.params, fn (_) -> %{"locale" => "bg"} end)
     BlogitWeb.Plugs.Locales.call(conn, nil)
 
-    assert Gettext.get_locale(BlogitWeb.Gettext) == "bg"
+    assert Gettext.get_locale(BlogitWeb.Web.Gettext) == "bg"
   end
 end

@@ -1,4 +1,4 @@
-defmodule BlogitWeb.Router do
+defmodule BlogitWeb.Web.Router do
   use BlogitWeb.Web, :router
 
   pipeline :browser do
@@ -14,15 +14,15 @@ defmodule BlogitWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/feed", BlogitWeb do
+  scope "/feed", BlogitWeb.Web do
     get "/", FeedController, :index
   end
 
-  scope "/:locale/feed", BlogitWeb do
+  scope "/:locale/feed", BlogitWeb.Web do
     get "/", FeedController, :index
   end
 
-  scope "/", BlogitWeb do
+  scope "/", BlogitWeb.Web do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
@@ -31,7 +31,7 @@ defmodule BlogitWeb.Router do
     get "/posts/:name", PostController, :show
   end
 
-  scope "/:locale", BlogitWeb do
+  scope "/:locale", BlogitWeb.Web do
     pipe_through :browser
 
     get "/", PageController, :index

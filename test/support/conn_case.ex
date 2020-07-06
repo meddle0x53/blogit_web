@@ -1,4 +1,4 @@
-defmodule BlogitWeb.ConnCase do
+defmodule BlogitWeb.Web.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -21,9 +21,9 @@ defmodule BlogitWeb.ConnCase do
 
       alias BlogitWeb.Repo
 
-      import BlogitWeb.Router.Helpers
+      import BlogitWeb.Web.Router.Helpers
 
-      @endpoint BlogitWeb.Endpoint
+      @endpoint BlogitWeb.Web.Endpoint
     end
   end
 

@@ -1,5 +1,5 @@
 defmodule BlogitWeb.PageControllerTest do
-  use BlogitWeb.ConnCase
+  use BlogitWeb.Web.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

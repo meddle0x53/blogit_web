@@ -31,7 +31,7 @@ defmodule BlogitWeb.Plugs.Locales do
         Blogit.Settings.default_language()
       end
 
-    Gettext.put_locale(BlogitWeb.Gettext, language)
+    Gettext.put_locale(BlogitWeb.Web.Gettext, language)
 
     conn |> assign(:locale, language)
   end
